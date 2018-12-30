@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单反数码相机介绍页面</title>
+	<link rel="stylesheet" href="../camera_pro/static/third/bootstrap3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../camera_pro/static/css/reset.css">
+    <link rel="stylesheet" href="../camera_pro/static/css/style.css">
+	<style>
+        html body {
+            padding: 0;
+            margin: 0;
+            background-color: black;
+            min-height: 100vh;
+        }
+
+        .head {
+            width: 100%;
+            background-color: #fed533;
+            height: 60px;
+        }
+
+        .head_left {
+            float: left;
+            padding-left: 25px;
+            font-size: 28px;
+            margin-top: 8px;
+        }
+
+        .head_right {
+            float: right;
+            padding-right: 20px;
+            font-size: 28px;
+            margin-top: 15px;
+        }
+
+        .content {
+            width: 100%;
+            min-height: 400px;
+            background-color: #000000/*#272727*/;
+            padding-top: 10px;
+        }
+
+        .brand_list{
+            width:90%;
+            height:60px;
+            -webkit-transform:translateX(10%);/*右移10%*/
+            text-align: center;
+            display: inline;
+            position: absolute;
+            margin-top: 10px;
+        }
+	    
+        .brand{
+            color:#fed533;
+            font-size: 20px;
+            font-family: "Microsoft Yahei";
+            padding-left: 20px;
+            
+            /*letter-spacing: 2px;*/
+           /* line-height: 5px;*/
+        }
+
+        .brand:hover{
+            color:#ffffff;
+            cursor: pointer;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        ._click{
+        	color:#ffffff;
+            cursor: pointer;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        /*._click:hover{
+        	color:#ffffff;
+            cursor: pointer;
+            font-size: 24px;
+            text-decoration: none;
+        }*/
+
+        .col-xs-1::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cd-nav::-webkit-scrollbar {
+            display: none;
+        }
+        .cd-navigation-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        #dialog-box {
+            -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background: #272727;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: 5000;
+            display: none;
+        }
+		
+		#bks{
+			width:85%;
+            height: 85%;
+			position:relative;
+		}
+        
+        ._reg{
+            display: none;
+            position:absolute;
+            margin: 0 auto;
+            width:85%;
+            height:85%;
+            z-index: 4998;
+            top: 8.4%;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+        }
+
+        ._reg div img{
+            cursor: pointer;
+        }
+
+        #box{
+			-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0,0,0,0.8);
+            width: 90%;
+            height: 90%;
+            margin: auto;
+            left: 0px;
+            right: 0px;
+            top: 12%;
+            bottom: 0px;
+            position: absolute;
+            z-index: 4999;/*比导航层低一级*/
+            display: none;
+            font-family: 'Microsoft YaHei';
+		}
+
+        ._pic{
+            margin-left: 5%;
+            margin-top: 10%;
+            margin-right: 5%;
+            float:left;
+            width: 30%;
+        }
+
+        ._title{
+            margin-top: 8%;
+            float: left;
+            word-wrap: break-word; 
+            color:#fed533;
+            font-size:26px;
+            line-height: 250%;
+        }
+
+        ._text{
+            color: white;
+            font-size:16px;
+            line-height:150%;
+            float: left; 
+            width: 60%;
+            height: 50%;
+        }
+
+		</style>
+</head>
+
+<body>
+	
+<!-- 头部导航栏 --->
+<div id="nav" class="head">
+    <div class="head_left">
+    	<a href="../index-副本.html"><img src="../camera_pro/static/img/logo.png" style="width: 150px;height: 50px;cursor:pointer"></a>
+        <span style="font-family: Microsoft YaHei;font-size: 0.6em;font-weight:600;color:black;margin-left: 10px;">单反商店</span>
+    </div>
+    <div class="head_right">
+        <div style="display:inline-block;vertical-align:middle">
+            <img src="../camera_pro/static/img/menu.png" style="width: 35px;height: 35px;cursor:pointer" onclick="popup()">
+            <span style="font-weight:bold; cursor:pointer;font-family: Microsoft YaHei;color:black;" onclick="popup()">MENU</span>
+        </div>
+    </div>
+</div>
+
+<!-- 内容部分 -->
+<div class="content">
+    <!-- 品牌分类 -->
+    <div class="brand_list"><!-- 能不能确定哪个<a>被按下了，取其id做刷新函数处理 -->
+        <!-- .reg加在<p>上，因为它是点击的对象 -->
+        <span><a><p id="brand_Cannon" class="reg brand" style="float:left; margin-left: 15px;margin-right: 20px;">佳能/Canon</p></a></span>    
+        <span><a><p id="brand_Nikon" class="reg brand" style="float: left;margin-right: 20px;">尼康/Nikon</p></a></span>
+        <span><a><p id="brand_Pentax" class="reg brand" style="float: left;margin-right: 20px;">宾得/PENTAX</p></a></span>
+        <span><a><p id="brand_Leica" class="reg brand" style="float: left;margin-right: 20px;">徕卡/Leica</p></a></span>
+        <span><a><p id="brand_Tamron" class="reg brand" style="float: left;margin-right: 20px;">腾龙/Tamron</p></a></span>
+        <span><a><p id="brand_Zeiss" class="reg brand" style="float: left;margin-right: 20px;">蔡司/Zeiss</p></a></span>
+        <span><a><p id="brand_Sigma" class="reg brand" style="float: left;margin-right: 20px;">适马/SIGMA</p></a></span>
+            <div style="margin-top: 2%;width: 100%"><img style="width: 100%" src="../camera_pro/static/img/fenge2.png"></div>
+    </div>
+
+    <div style="width: 100%;margin-top: 2%"> <img style="margin-left: 75%;width: 15%;margin-top: 3%" src="../camera_pro/static/img/搜索框.png"></div>
+
+    <!-- 背景书架 -->
+    <div style='width:100%;min-height:400px;z-index: 8;'>
+    <center style='width:100%;position: relative;'><img style="margin-top: 0.5%" src="bookshelf.png" alt="书柜" id="bks">
+    <!-- 放置相机 -->
+    <div id="Cannon" class="_reg">
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_1" class='_cannon' src="../camera_pro/static/img/dc_body/佳能机身/1D X Mark II'.png" alt="佳能1D X Mark II" style="height: 95%;" onclick="pre(event);_pre()">    
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_2" class='_cannon' src="../camera_pro/static/img/dc_body/佳能机身/5D4.png" alt="佳能5D4" style="width:80%;" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_3" class='_cannon' src="../camera_pro/static/img/dc_body/佳能机身/6D2.png" alt="佳能6D2" style="width:80%;" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_4" class='_cannon' src="../camera_pro/static/img/dc_body/佳能机身/80D.png" alt="佳能80D" style="width:80%;" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_5" class='_cannon' src="../camera_pro/static/img/dc_body/佳能机身/200D.png" alt="佳能200D" style="width:80%;margin-top: 7%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_6" class='_cannon' src="../camera_pro/static/img/dc_body/佳能机身/800D.png" alt="佳能800D" style="width:80%;margin-top: 7%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_7" class='_cannon' src="../camera_pro/static/img/lens/佳能镜头/EF 8-15mm f_4L USM 鱼眼.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_8" class='_cannon' src="../camera_pro/static/img/lens/佳能镜头/EF 16-35mm f_2.8L III USM.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_9" class='_cannon' src="../camera_pro/static/img/lens/佳能镜头/EF 24mm f_1.4L II USM.png" style="height: 80%;margin-top: 17%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_10"class='_cannon'  src="../camera_pro/static/img/lens/佳能镜头/EF 200-400mm f_4L IS USM EXTENDER 1.4X 2.png" style="height: 80%;margin-top: 17%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_11"class='_cannon'  src="../camera_pro/static/img/lens/佳能镜头/EF 400mm f_2.8L IS II USM .png" style="height: 80%;margin-top: 17%" onclick="pre(event);_pre()" >
+    	</div>
+    	<div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+    		<img id="Cannon_12"class='_cannon'  src="../camera_pro/static/img/lens/佳能镜头/TS-E 17mm f_4L 2 .png" style="height: 80%;margin-top: 17%" onclick="pre(event);_pre()" >
+    	</div>	
+    </div>
+
+    <div id="Nikon" class="_reg">
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_1" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D5.png" alt="Nikon D5" style="height: 95%;" onclick="pre(event);_pre()" >    
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_2" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D610.png" alt="Nikon D610" style="width:80%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_3" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D810.png" alt="Nikon D810" style="width:80%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_4" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D5300.png" alt="Nikon D5300" style="width:80%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_5" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D7200.png" alt="Nikon D7200" style="width:80%;margin-top: 8%;margin-left: 2%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_6" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/Df.png" alt="Nikon Df" style="width:80%;margin-top: 8%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_7" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/大三元 AF-S 14-24mm.png" style="height: 80%;margin-top: 13%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_8" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/尼克尔 z35mm f1 8S.png" style="height: 80%;margin-top: 13%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_9" class='_nikon' src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/AF Nikkor 50mm f1 8D.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_10"class='_nikon'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/AF-P 70-300mm f4 5-5 6E ED VR.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_11"class='_nikon'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/AF-P DX 10-20mm.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Nikon_12"class='_nikon'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/PC-E 微距 85mm f2 8D 移轴镜头.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>  
+    </div>
+
+    <div id="Sigma" class="_reg">
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Sigma_1" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/17-50mm f2 8 EX DC OS HSM.png" alt="17-50mm f2.8 EX DC OS HSM" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()">    
+        </div>
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Sigma_2" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/30mm f1 4 DC DN.png" alt="30mm f1.4 DC DN" style="height: 80%;margin-top: 6%" onclick="pre(event);_pre()" >
+        </div>
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Sigma_3" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/ART 105 1 4 DG HSM.png" alt="ART 105 1 4 DG HSM" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Sigma_4" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/Art 24-70 f2 8 DG OS HSM.png" alt="Art 24-70 f2.8 DG OS HSM" style="height: 80%;margin-top: 6%" onclick="pre(event);_pre()" >
+        </div>
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Sigma_5" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/ART 35mm  F1 4 DG HSM.png" alt="ART 35mm  F1.4 DG HSM" style="height: 80%;margin-top: 14%" onclick="pre(event);_pre()" >
+        </div>
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Sigma_6" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/ART 14mm F1 8 DG HSM.png" alt="ART 14mm F1.8 DG HSM" style="height: 80%;margin-top: 14%" onclick="pre(event);_pre()" >
+        </div>
+        <div style="width:20%;height:33%;display:inline-block;margin-right:25%;margin-left:2%;">
+            <img id="Sigma_7" class='_sigma' src="../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/150-600mm F5-6 3 PG OS HSM.png" style="height: 80%;margin-top: 14%" onclick="pre(event);_pre()" >
+        </div>
+    </div>
+
+    <div id="Pentax" class="_reg">
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_1" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得 645Z.png" alt="Nikon D5" style="width: 80%;margin-top: 3%" onclick="pre(event);_pre()" >    
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_2" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得K1 全画幅.png" alt="Nikon D610" style="width: 80%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_3" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得K50.png" alt="宾得K50" style="width: 80%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_4" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得KP.png" alt="宾得KP" style="width: 80%;" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_5" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/PENTAX K11-MARK2.png" alt="/PENTAX K11-MARK2" style="width: 80%;margin-top: 7%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_6" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/DA HD 35mm f 2.8 微距镜头.png" alt="DA HD 35mm f 2.8 微距镜头" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_7" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/DA HD21mm F 3.2 DA 21.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_8" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/HD DA 55-300mm PLM WR.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Pentax_9" class='_pentax' src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/FA 43mm F1.9 limited.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:50%;margin-left:2%;">
+            <img id="Pentax_10"class='_pentax'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/HD DFA 70~200mm F2.8 ED DC AW.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+    </div>
+
+    <div id="Leica" class="_reg">
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_1" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica S.png" alt="Leica S" style="width: 80%;margin-top: 6%" onclick="pre(event);_pre()" >    
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_2" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/徕卡35 2.5 S广角镜头.png" alt="徕卡35 2.5 S广角镜头" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_3" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica 超高速肖像镜头.png" alt="Leica 超高速肖像镜头" style="height: 80%;margin-top: 7%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_4" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica 转轴镜头.png" alt="Leica 转轴镜头" style="height: 80%;margin-top: 10%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_5" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica S 变焦镜头.png" alt="Leica S 变焦镜头" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_6" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M18mm f3.8.png" alt="M18mm f3.8" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_7" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M35mm f2.4.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_8" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M50 f0.95 ASPH.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Leica_9" class='_leica' src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M50mm f2.0 标准定焦.png" style="height: 80%;margin-top: 16%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:50%;margin-left:2%;">
+            <img id="Leica_10"class='_leica'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M135mm f3.4.png" style="height: 80%;margin-top: 16%" onclick="pre(event);_pre()" >
+        </div>
+    </div>
+
+    <div id="Tamron" class="_reg">
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_1" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/10-40mm F3.5-4.5 Di VC.png" alt="10-40mm F3.5-4.5 Di VC" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >    
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_2" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/15-30mm F2.8 USD.png" alt="15-30mm F2.8 USD" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_3" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/28-300mm F3.5-6.3 PZD.png" alt="28-300mm F3.5-6.3 PZD" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_4" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/70-200mm F2.8 USD G2.png" alt="70-200mm F2.8 USD G2" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_5" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 15-300mm F2.8 Di VC Model A012 超广角.png" alt="SP 15-300mm F2.8 Di VC Model A012 超广角" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_6" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 24-70mm F2.8 Di VC USD G2(A032).png" alt="SP 24-70mm F2.8 Di VC USD G2(A032)" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_7" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 45 F1.8 USD.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+<!--         <div style="position: absolute;bottom: 180px;left: 900px;">
+            <img id="Tamron_8" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 45mm F1.8 Di VC F013.png" style="width: 150px;height:100px;" onclick="pre(event);_pre()" >
+        </div> -->
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Tamron_9" class='_tamron' src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 85mm F1.8 Di VC USD F016.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:75%;margin-left:2%;">
+            <img id="Tamron_10"class='_tamron'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 150-600mm F5-6.3 Di VC G2 A022.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+    </div>
+
+    <div id="Zeiss" class="_reg">
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_1" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 15 2.8 广角.png" alt="Milvus 15 2.8 广角" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >    
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_2" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 18 2.8 广角.png" alt="Milvus 18 2.8 广角" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_3" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 35 2 人文定焦.png" alt="Milvus 35 2 人文定焦" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_4" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 50 2 MACRO 微距.png" alt="7Milvus 50 2 MACRO 微距" style="height: 80%;margin-top: 8%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_5" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 85mm f 1.4.png" alt="Milvus 85mm f 1.4" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_6" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 100mm f 2.0 ZF.2 微距.png" alt="Milvus 100mm f 2.0 ZF.2 微距" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_7" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 133mm f 2 ZF.2.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_8" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Otus 1.4 85mm ZE 人像.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+            <img id="Zeiss_9" class='_zeiss' src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Otus 28mm f 1.4.png" style="height: 80%;margin-top: 16%" onclick="pre(event);_pre()" >
+        </div>
+
+        <div style="width:20%;height:33%;display:inline-block;margin-right:50%;margin-left:2%;">
+            <img id="Zeiss_10"class='_zeiss'  src="../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Planar T 50mm f 1.4.png" style="height: 80%;margin-top: 15%" onclick="pre(event);_pre()" >
+        </div>
+    </div>
+    </center>
+</div>
+	 
+</div>
+
+
+
+
+
+<!-- popup弹出层 --->
+<div id="dialog-box">
+    <div class="dialog-content">
+        <div id="dialog-message" class="cd-nav">
+            <a href="#" onclick="close_popup()"><img src="../camera_pro/static/img/close.png" style="width: 30px;height: 30px;margin-top: 20px;margin-right:20px;float: right;"></a>
+            <div class="cd-navigation-wrapper" style="padding-top: 0px">
+                <div class="cd-half-block">
+
+                    <nav>
+                        <ul class="cd-primary-nav" style="margin-top: 80px;">
+                            <li style="line-height: 350%"><a href="../index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei';">工作台</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORKBENCH</a></li>
+
+                            <li style="line-height: 350%"><a href="#" onclick="close_popup()" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">数码相机</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="#" onclick="close_popup()" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">DIGITAL CAMERA</a></li>
+
+                            <li style="line-height: 350%"><a href="../intro_film/index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">胶片机</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../intro_film/index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">GRAIN CAMERA</a></li>
+
+                            <li style="line-height: 350%"><a href="../lens_earth/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">世界画廊</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../lens_earth/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORLD GALARY</a></li>
+
+                            <li style="line-height: 350%"><a href="../about us/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">联系我们</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../about us/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">ABOUT AS</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="cd-half-block">
+                        <img src="../camera_pro/static/img/导航.jpg" style="width:70%;margin-top: 40px;float: right;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 具体内容弹出层 -->
+<div id="box">
+    <img style="float: right;width:25px;height:25px;cursor:pointer;margin-top: 20px;margin-right: 20px;" src="../camera_pro/static/img/close.png"  onclick="_close()">
+	<img class="_pic" src="">
+	<h3 class="_title"></h3>
+	<p class='_text'></p>  
+</div>
+
+
+<script src="../camera_pro/static/js/jquery-3.2.1.min.js"></script>
+<script src="../camera_pro/static/third/bootstrap3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	    function popup() { //打开导航
+        	//加载弹出层
+        	$('body').toggleClass('navigation-is-open');
+        	$('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+        	});
+        	//淡入动画
+        	$('#dialog-box').css("opacity", 0);
+        	$(".cd-primary-nav").css("opacity", 0);
+        	$('#dialog-box').show();
+        	$('#dialog-box').fadeTo(400,1,function () { // 400是毫秒单位，透明度从0-100%总用时400ms
+
+        	});
+        	$('.cd-primary-nav').fadeTo(400,1,function () {
+
+        	});
+   		}
+
+    	function close_popup() { //关闭导航
+        //淡出动画
+        $('#dialog-box').fadeTo(400,0,function () {
+            //淡出动画完成后隐藏
+            $('#dialog-box').hide();
+            $('body').toggleClass('navigation-is-open');
+            $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+            });
+        });
+
+    	}
+</script>
+
+<script type="text/javascript">
+	//定义匿名函数，设定选中厂商时的显示样式
+    $(function(){
+        $(".reg").click(function(ev) {
+            $('.reg').removeClass('_click');
+            $('.reg').addClass('brand');
+            $(ev.target).removeClass('brand');
+            $(ev.target).addClass('_click');   
+            // console.log($('._click').attr('id'));
+
+
+            var tg=$(ev.target).attr('id');
+            // console.log(tg);
+            // $("._reg").css('display','none');
+            $("._reg").css('display','none');
+
+            switch(tg){
+                case 'brand_Cannon':
+                    $("#Cannon").css('display','block');
+                break;
+
+                case 'brand_Nikon':
+                    $("#Nikon").css('display','block');
+                break;
+
+                case 'brand_Sigma':
+                    $("#Sigma").css('display','block');
+                break;
+
+                case 'brand_Pentax':
+                    $("#Pentax").css('display','block');
+                break;
+
+                case 'brand_Leica':
+                    $("#Leica").css('display','block');
+                break;
+
+                case 'brand_Tamron':
+                    $("#Tamron").css('display','block');
+                break;
+
+                case 'brand_Zeiss':
+                    $("#Zeiss").css('display','block');
+                break;
+
+                default: alert("出错了！！！");
+            }        
+        });
+
+    });
+
+    //打开网页时默认选中佳能
+    window.onload=function(){
+        $('#brand_Cannon').click();
+    }
+
+    //显示悬浮半透明框
+    function _pre(){   	
+	   	$('#box').show();
+    }
+
+    //关闭半透明框
+    function _close(){
+        $('#box').hide();
+    }
+
+    //显示具体介绍内容
+    function pre(ev) {
+        var idn=$(ev.target).attr('id');    
+        var brand_id = $('._click').attr('id');                 //查看是哪个品牌被选中了
+        // console.log(brand_id);
+
+        switch(brand_id){
+            case 'brand_Cannon' :
+                switch(idn){
+                    case "Cannon_1":
+                        $("._title").text('Cannon 1DX Mark II');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9×23.9mm<br/>有效像素    约2020万<br/>镜头卡口    Canon EF<br/>兼容镜头    佳能EF系列镜头（EF-S、EF-M镜头除外）<br/>对焦系统类型  TTL辅助影像重合，相位检测<br/>测光系统    使用36万像素 RGB+红外 测光感应器、216区TTL全开光圈测光EOS iSA（智能被摄体分析）系统<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约162万<br/>LCD特性   触摸屏<br/>电池  电池 LP-E19或LP-E4N/LP-E4（1节）<br/>续航能力    使用取景器拍摄：23℃时约1210张、0℃时约1020张；使用实时显示拍摄：23℃时约260张、0℃时约240张<br/>材质  镁合金');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/dc_body/佳能机身/1D X Mark II.png',
+                            style:''
+                            });
+
+                    break;
+                    case "Cannon_2":
+                        $("._title").text('Cannon 5D Mark IV');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约36×24mm<br/>有效像素    约3040万<br/>镜头卡口    Canon EF<br/>兼容镜头    佳能EF系列镜头（EF-S、EF-M镜头除外）<br/>对焦系统类型  TTL辅助影像重合，使用专用自动对焦感应器的相差检测<br/>测光系统    使用约15万像素 RGB+红外 测光感应器、252区TTL全开光圈测光、EOS iSA（智能被摄体分析）系统<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约162万<br/>LCD特性   触摸屏<br/>电池  电池LP-E6N或LP-E6（1块）<br/>续航能力    使用取景器拍摄：23℃时约900张、0℃时约850张；使用实时显示拍摄：23℃时约300张、0℃时约280张');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/dc_body/佳能机身/5D4.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_3":
+                        $("._title").text('CANON EOS 6D Mark II');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9×24mm<br/>有效像素    约2620万<br/>镜头卡口    Canon EF<br/>兼容镜头    佳能EF系列镜头（EF-S、EF-M镜头除外）<br/>对焦系统类型  TTL辅助影像重合，使用专用自动对焦感应器的相差检测<br/>测光系统    使用7560像素 RGB+红外 测光感应器、63区TTL全开光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.0英寸<br/>LCD像素   约104万<br/>LCD特性   触摸屏, 翻转屏<br/>电池  电池LP-E6N或LP-E6（1块）<br/>续航能力    使用取景器拍摄：23℃时约1200张、0℃时约1100张；使用实时显示拍摄：23℃时约380张、0℃时约340张');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/dc_body/佳能机身/6D2.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_4":
+                        $("._title").text('CANON EOS 80D');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约22.3×14.9mm<br/>有效像素    约2420万<br/>镜头卡口    Canon EF<br/>兼容镜头    佳能EF系列镜头（包括EF-S、不包括EF-M镜头） （35毫米换算焦距约为镜头焦距的1.6倍）<br/>对焦系统类型  TTL辅助影像重合，使用专用自动对焦感应器的相差检测<br/>测光系统    使用7560像素 RGB+红外 测光感应器、63区TTL全开光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.0英寸<br/>LCD像素   约104万<br/>LCD特性   触摸屏, 翻转屏<br/>电池  电池LP-E6N或LP-E6（1块）<br/>续航能力    使用取景器拍摄：23℃时约960张、0℃时约860张；使用实时显示拍摄：23℃时约300张、0℃时约270张');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/dc_body/佳能机身/80D.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_5":
+                        $("._title").text('CANON EOS 200D');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约22.3×14.9mm<br/>有效像素    约2420万<br/>镜头卡口    Canon EF<br/>兼容镜头    佳能EF系列镜头（包括EF-S、不包括EF-M镜头） （35毫米换算焦距约为镜头焦距的1.6倍）<br/>对焦系统类型  TTL辅助影像重合，使用专用自动对焦感应器的相差检测<br/>测光系统    63区TTL全开光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.0英寸<br/>LCD像素   约104万<br/>LCD特性   触摸屏, 翻转屏<br/>电池  电池LP-E17（1块）<br/>续航能力    使用取景器拍摄：23℃时约650张、0℃时约620张；使用实时显示拍摄：23℃时约260张、0℃时约240张');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/dc_body/佳能机身/200D.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_6":
+                        $("._title").text('CANON EOS 800D');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约22.3×14.9mm<br/>有效像素    约2420万<br/>镜头卡口    Canon EF<br/>兼容镜头    佳能EF系列镜头（包括EF-S、不包括EF-M镜头）<br/>对焦系统类型  TTL辅助影像重合，使用专用自动对焦感应器的相差检测<br/>测光系统    使用7560像素 RGB+红外 测光感应器、63区TTL全开光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.0英寸<br/>LCD像素   约104万<br/>LCD特性   触摸屏, 翻转屏<br/>电池  可充电锂电池LP-E17（1块）<br/>续航能力    使用取景器拍摄：常温（23℃）时约600张、低温（0℃）时约550张；使用实时显示拍摄：常温（23℃）时约270张、低温（0℃）时约230张');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/dc_body/佳能机身/800D.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_7":
+                        $("._title").text('CANON EF 8-15/4 L Fisheye USM');
+                        $("._text").text('镜头类型    鱼眼镜头<br/>焦距  8mm-15mm<br/>最大光圈    f/4<br/>最小光圈    f/22<br/>视角  [水平]180-142°/[垂直]180-91.77°/[对角线]180-175.5<br/>镜头结构    14片/11组<br/>光圈叶片    7片<br/>最近对焦距离  15cm<br/>最大放大倍率  0.39<br/>驱动马达    USM（超声波马达）<br/>镜头卡口    Canon EF<br/>防抖  否<br/>尺寸  78.5×83.0mm<br/>重量  540g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/lens/佳能镜头/EF 8-15mm f_4L USM 鱼眼.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_8":
+                        $("._title").text('CANON EF 16-35/4L IS USM');
+                        $("._text").text('镜头类型    广角变焦镜头<br/>焦距  16mm-35mm<br/>最大光圈    f/4<br/>最小光圈    f/22<br/>视角    [水平] 98° - 54°/[垂直] 74°10’ -38°/[对角线] 108°10‘ - 63°<br/>镜头结构    16片/12组非球面镜片   3片<br/>低/超低色散镜片    2片光圈叶片    9片最近对焦距离  28cm<br/>最大放大倍率  0.23驱动马达    USM（超声波马达）<br/>滤镜口径    77mm<br/>镜头卡口    Canon EF<br/>防抖  是<br/>尺寸  82.6×112.8mm<br/>重量  615g<br/>备注  内对焦；全时手动对焦；防水滴防尘；防污氟镀膜。');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/lens/佳能镜头/EF 16-35mm f_2.8L III USM.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_9":
+                        $("._title").text('CANON EF 24/1.4 L II USM');
+                        $("._text").text('镜头类型    超广角镜头<br/>焦距  24mm<br/>最大光圈    f/1.4<br/>最小光圈    f/22<br/>视角（对角）  84<br/>镜头结构    13片/10组<br/>非球面镜片   2片<br/>低/超低色散镜片    2片<br/>光圈叶片    8片<br/>最近对焦距离  25cm<br/>最大放大倍率  0.17<br/>驱动马达    USM（超声波马达）<br/>滤镜口径    77mm<br/>镜头卡口    Canon EF<br/>防抖  否<br/>尺寸  83.5×86.9mm<br/>重量  650g<br/>附件  镜头盖E-77U, 遮光罩EW-83K, 镜头袋LP1319');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/lens/佳能镜头/EF 24mm f_1.4L II USM.png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_10":
+                        $("._title").text('CANON EF 200-400/4L IS USM EXTENDER 1.4X');
+                        $("._text").text('镜头类型    超远摄变焦镜头<br/>焦距  200mm-400mm<br/>最大光圈    f/4.0<br/>最小光圈    f/32<br/>视角（对角）  10°～5.6°<br/>视角（水平）  7°～3.5°<br/>视角（垂直）  12°～6.17°<br/>镜头结构    25片/20组<br/>低/超低色散镜片    4片<br/>光圈叶片    9片<br/>最近对焦距离  200cm<br/>最大放大倍率  0.15<br/>驱动马达    USM（超声波马达）<br/>滤镜口径    52mm<br/>镜头卡口    Canon EF<br/>防抖  是<br/>尺寸  128×366mm<br/>重量  3620g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/lens/佳能镜头/EF 200-400mm f_4L IS USM EXTENDER 1.4X 2.png',
+                            style: 'width:23%'
+                            });
+
+                    break;
+                    case "Cannon_11":
+                        $("._title").text('CANON EF 400/2.8L IS III USM');
+                        $("._text").text('镜头类型    超远摄镜头<br/>焦距  400mm<br/>最大光圈    f/2.8<br/>最小光圈    f/32<br/>视角（对角）  6°10<br/>镜头结构    17片/13组<br/>低/超低色散镜片    2片萤石镜片，1片超级UD镜片<br/>光圈叶片    9片<br/>最近对焦距离  250cm<br/>最大放大倍率  约0.17倍<br/>驱动马达    USM（超声波马达）<br/>滤镜口径    52mm<br/>镜头卡口    Canon EF<br/>防抖  是<br/>尺寸  163×343mm<br/>重量  2840g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/lens/佳能镜头/EF 400mm f_2.8L IS II USM .png',
+                            style: ''
+                            });
+
+                    break;
+                    case "Cannon_12":
+                        $("._title").text('CANON TS-E 17/4L');
+                        $("._text").text('镜头类型    移轴镜头<br/>焦距  17mm<br/>最大光圈    f/4<br/>最小光圈    f/22<br/>视角（对角）  104<br/>镜头结构    18片/12组<br/>低/超低色散镜片    4片<br/>光圈叶片    8片<br/>最近对焦距离  25cm<br/>最大放大倍率  0.14<br/>镜头卡口    Canon EF<br/>防抖  否<br/>尺寸  88.9×106.7mm<br/>重量  820g<br/>附件  镜头盖17, 镜头袋LP1219<br/>备注  不能安装滤光镜');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/lens/佳能镜头/TS-E 17mm f_4L 2 .png',
+                            style: ''
+                            });
+
+                    break;
+                    default:alert("出错了！！！");
+                }
+            break;
+
+            case 'brand_Nikon' :
+                switch(idn){
+                    case "Nikon_1":
+                        $("._title").text('NIKON D5');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9×23.9mm<br/>有效像素    约2082万<br/>镜头卡口    Nikon F<br/>兼容镜头    兼容AF 尼克尔镜头，包括G型、E型、D型镜头（PC镜头受到某些限制）、DX镜头（使用DX24×16 1.5×影像区域）、AI-P尼克尔镜头以及非CPU AI镜头（仅限于曝光模式A和M）<br/>测光系统    使用约180K （180000）像素RGB 感应器的TTL曝光测光<br/>LCD类型   TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约235.9万<br/>LCD特性   触摸屏<br/>电池  一块EN-EL18a 锂离子电池组<br/>工作温度  0~40℃');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D5.png',
+                            
+                            });
+
+                    break;
+
+                    case "Nikon_2":
+                        $("._title").text('NIKON D610');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9 × 24mm<br/>有效像素    约2426万<br/>镜头卡口    Nikon F<br/>兼容镜头    兼容AF 尼克尔镜头，包括G 型和D 型镜头（PC 微距尼克尔镜头受到某些限制）、DX 镜头（使用DX24 × 16 1.5 ×图像区域）、AI-P 尼克尔镜头以及非CPU AI 镜头（仅限于曝光模式A 和M）<br/>对焦系统类型    Multi-CAM 4800 TTL 相位侦测<br/>测光系统    2016 像素RGB 感应器的TTL 曝光测光<br/>LCD类型   TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约92.1万<br/>电池  一块EN-EL15 锂离子可充电电池；另购的MB-D14 多功能电池匣可容纳1 块尼康EN-EL15 锂离子可充电电池或6 节AA 碱性电池、镍氢电池或锂电池<br/>续航能力    约1,110张静止图像，或者录制约80分钟短片（基于CIPA标准测量）<br/>工作温度  0~40℃<br/>工作湿度    不高于85%');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D610.png',
+                            
+                            });
+                        
+                    break;
+
+                    case "Nikon_3":
+                        $("._title").text('NIKON D810');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9 × 24mm<br/>有效像素    约3638万<br/>镜头卡口    Nikon F<br/>兼容镜头    兼容AF尼克尔镜头，包括G型、E型、D型镜头（PC镜头受到某些限制）、DX镜头（使用DX 24×16 1.5×影像区域）、AI-P尼克尔镜头以及非CPU AI镜头（仅限于曝光模式A和M）。不能使用IX尼克尔镜头、用于F3AF的镜头以及非AI镜头<br/>对焦系统类型    Multi-CAM 3500FX<br/>测光系统    使用约91K（91000）像素RGB感应器的TTL曝光测光<br/>LCD类型   TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约122.9万<br/>电池  一块EN-EL15锂离子可充电电池<br/>续航能力    基于CIPA标准测量方式，当锂离子可充电电池EN-EL15进行一次充电后，每隔一张照片，闪光一次，D810可拍摄约1,200张静止图像，若不使用内置闪光灯，可拍摄约3,860张<br/>材质    镁合金');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D810.png',
+                            
+                            });
+                        
+                    break;
+
+                    case "Nikon_4":
+                        $("._title").text('NIKON D5300');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约23.5 × 15.6mm<br/>有效像素    约2416万<br/>镜头卡口    Nikon F<br/>兼容镜头    AF-S 和AF-I 镜头可使用自动对焦；其他G 型和D 型镜头、AF  镜头( 不支持IX 尼克尔镜头和F3AF 镜头) 和AI-P 镜头不可使用自动对焦；非CPU 镜头可用于模式 (M)，但照相机曝光测光功能将不运作；最大光圈为f/5.6 或以上的镜头可使用电子测距仪<br/>对焦系统类型    Multi-CAM 4800DX 自动对焦模块具备TTL 相位侦测<br/>测光系统    使用2016 像素RGB 感应器进行TTL 曝光测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约103.7万<br/>LCD特性   翻转屏<br/>电池  一块EN-EL14a 锂离子可充电电池<br/>工作温度  0~40℃<br/>工作湿度    不高于85%');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D5300.png',
+                            
+                            });
+
+                    break;
+
+                    case "Nikon_5":
+                        $("._title").text('NIKON D7200');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约23.5 × 15.6mm<br/>有效像素    约2416万<br/>镜头卡口    Nikon F<br/>测光系统    使用2016 像素RGB 感应器进行TTL 曝光测光<br/>LCD类型   TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约122.9万<br/>电池  一块EN-EL15 锂离子可充电电池<br/>约1,110张静止图像，或者录制约80分钟短片（基于CIPA标准测量）<br/>材质  镁合金<br/>工作温度  0~40℃<br/>工作湿度    不高于85%');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/D7200.png',
+                            
+                            });
+                        
+                    break;
+
+                    case "Nikon_6":
+                        $("._title").text('NIKON DF');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9 × 24mm<br/>有效像素    约1625万<br/>镜头卡口    Nikon AF, Nikon F<br/>兼容镜头    兼容AF 尼克尔镜头，包括G 型、E 型和D 型镜头（PC 镜头存在某些限制）、DX 镜头（使用DX 24×16 1.5x 图像区域）、AI-P 尼克尔镜头以及非CPU 镜头<br/>对焦系统类型    Multi-CAM 4800DX 自动对焦模块具备TTL 相位侦测<br/>测光系统    2,016 像素RGB 传感器的TTL 曝光测光<br/>LCD类型   VGA LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约92.1万<br/>电池  EN-EL14a 锂离子可充电电池');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/Df.png',
+                            
+                            });
+                        
+                    break;
+
+                    case "Nikon_7":
+                        $("._title").text('NIKON AF-S 14-24/2.8G ED');
+                        $("._text").text('镜头类型    广角变焦镜头<br/>焦距  14mm-24mm<br/>最大光圈    f/2.8<br/>最小光圈    f/22<br/>视角（对角）  114.00-84.00<br/>镜头结构    14片/11组<br/>非球面镜片    3片<br/>低/超低色散镜片    2片<br/>光圈叶片    9片<br/>最近对焦距离  28cm<br/>最大放大倍率  0.149<br/>驱动马达    SWM（宁静波动马达）<br/>镜头卡口    Nikon AF<br/>防抖  否<br/>尺寸  98×131mm<br/>重量  1000g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/大三元 AF-S 14-24mm.png',
+                            
+                            });
+
+                    break;
+
+                    case "Nikon_8":
+                        $("._title").text('NIKON Z 35/1.8 S');
+                        $("._text").text('镜头类型    广角镜头<br/>焦距  35mm<br/>最大光圈    f/1.8<br/>最小光圈    f/16<br/>视角（对角）  63<br/>镜头结构    11片/9组<br/>非球面镜片    3片<br/>低/超低色散镜片    2片<br/>光圈叶片    9片<br/>最近对焦距离  25cm<br/>最大放大倍率  0.19<br/>滤镜口径    62mm<br/>镜头卡口    Nikon Z<br/>防抖  否<br/>尺寸  73×86mm<br/>重量  370g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/尼克尔 z35mm f1 8S.png',
+                            
+                            });
+
+                    break;
+
+                    case "Nikon_9":
+                        $("._title").text('NIKON AF 50/1.8D');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距  50mm<br/>最大光圈    f/1.8<br/>最小光圈    f/22<br/>视角（对角）  46<br/>镜头结构    6片/5组<br/>光圈叶片    7片<br/>最近对焦距离  45cm<br/>最大放大倍率  0.152<br/>驱动马达    AF马达<br/>滤镜口径    52mm<br/>镜头卡口    Nikon AF，Nikon F<br/>防抖  否<br/>尺寸  63.5×39mm<br/>重量  155g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/AF Nikkor 50mm f1 8D.png',
+                            style:'width:25%'
+                            });
+
+                    break;
+
+                    case "Nikon_10":
+                        $("._title").text('NIKON AF-P 70-300/4.5-5.6E ED VR');
+                        $("._text").text('镜头类型    远摄变焦镜头<br/>焦距  70mm-300mm<br/>最大光圈    f/4.5-5.6<br/>最小光圈    f/32-40<br/>视角（对角）  32°20-8°10<br/>镜头结构    18片/14组<br/>非球面镜片    1片<br/>光圈叶片    9片<br/>最近对焦距离    120cm<br/>滤镜口径    67mm<br/>镜头卡口    Nikon F<br/>防抖  是<br/>尺寸  80.5×146mm<br/>重量  680g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/AF-P 70-300mm f4 5-5 6E ED VR.png',
+                            });
+
+                    break;
+
+                    case "Nikon_11":
+                        $("._title").text('NIKON AF-P DX 10-20/4.5-5.6G VR');
+                        $("._text").text('镜头类型    广角变焦镜头<br/>焦距  10mm-20mm<br/>最大光圈    f/4.5-5.6<br/>最小光圈    f/22-29<br/>视角（对角）  109°-70°<br/>镜头结构    14片/11组<br/>非球面镜片    3片<br/>光圈叶片    7片<br/>最近对焦距离    22cm<br/>滤镜口径    72mm<br/>镜头卡口    Nikon F<br/>防抖  是<br/>尺寸  77×73mm<br/>重量  230g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/AF-P DX 10-20mm.png',
+                            
+                            });
+
+                    break;
+
+                    case "Nikon_12":
+                        $("._title").text('NIKON PC 85/2.8D Micro');
+                        $("._text").text('镜头类型    移轴镜头<br/>焦距  85mm<br/>最大光圈    f/2.8<br/>最小光圈    f/32<br/>视角（对角）  28.5<br/>镜头结构    6片/5组<br/>光圈叶片    9片<br/>最近对焦距离    39cm<br/>最大放大倍率    0.5<br/>滤镜口径    77mm<br/>镜头卡口    Nikon AF，Nikon F<br/>防抖  否<br/>尺寸  83.5×109.5mm<br/>重量  775g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/尼康/PC-E 微距 85mm f2 8D 移轴镜头.png',
+                            
+                            });
+
+                    break;
+
+                    default:alert("出错了！！！");
+                } 
+            break;
+
+            case 'brand_Pentax' :
+                switch(idn){
+                    case "Pentax_1":
+                        $("._title").text('PENTAX 645Z');
+                        $("._text").text('产品类型    大中画幅可换镜头数码相机<br/>影像传感器尺寸    约43.8×32.8mm<br/>有效像素    约5140万<br/>镜头卡口    Pentax 645AF2<br/>兼容镜头    PENTAX 645AF2卡口镜头 645AF2卡口镜头、645AF卡口镜头、645A 卡口<br/>对焦系统类型    TTL相位差异自动对焦<br/>测光系统    采用 8.6万像素 RGB感应器的 TTL开放光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约103.7万<br/>LCD特性   翻转屏<br/>电池  充电式锂离子电池 D-LI90<br/>续航能力    可拍摄张数约 700 张、重播时间约 400分钟');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得 645Z.png',
+                            
+                            });
+                    break;
+
+                    case "Pentax_2":
+                        $("._title").text('PENTAX K-1');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>影像传感器尺寸    约35.9×24mm<br/>有效像素    约3640万<br/>镜头卡口    Pentax AF<br/>兼容镜头    KAF3，KAF2(兼容电动变焦)，KAF，KA接环镜头<br/>对焦系统类型    TTL相位差异自动对焦<br/>测光系统    采用8.6万像素RGB感应器的TTL开放光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约103.7万<br/>LCD特性   翻转屏<br/>电池  充电式锂离子电池 D-LI90<br/>续航能力    可拍摄张数约760张，重播时间约390分钟<br/>材质    机身的前后及下部的外壳采用了轻量坚固的镁合金材质');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得K1 全画幅.png',
+                            
+                            });
+                    break;
+
+                    case "Pentax_3":
+                        $("._title").text('PENTAX K-50');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约23.7×15.7mm<br/>有效像素    1628万<br/>镜头卡口    Pentax AF<br/>对焦系统类型    TTL相位匹配11点宽区（9点十字型）自动对焦系统（SAFOX IXi+）<br/>测光系统    77区TTL全开光圈测光系统<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约92万<br/>LCD特性   翻转屏<br/>电池  充电式锂电池D-LI109<br/>续航能力    可拍摄张数约710张<br/>工作温度    -10-40℃');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得K50.png',
+                            
+                            });
+                    break;
+
+                    case "Pentax_4":
+                        $("._title").text('PENTAX KP');
+                        $("._text").text('产品类型    APS画幅可换镜头数码相机<br/>影像传感器尺寸    约23.5×15.6mm<br/>有效像素    2432万<br/>镜头卡口    Pentax AF<br/>兼容镜头    KAF4、KAF3、KAF2(不兼容电动变焦)、KAF、KA卡口镜头<br/>对焦系统类型    TTL相位差异自动对焦<br/>测光系统    8.6万像素RGB传感器的TTL开放光圈测光<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约92.1万<br/>LCD特性   翻转屏<br/>电池  充电式锂电池D-LI109<br/>续航能力    可拍摄张数：闪光灯使用50％：约390张、不闪光：约420张<br/>材质    镁合金');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/宾得KP.png',
+                            
+                            }); 
+                    break;
+
+                    case "Pentax_5":
+                        $("._title").text('PENTAX K-1 Mark II');
+                        $("._text").text('产品类型    35mm画幅可换镜头数码相机<br/>有效像素    3640万<br/>兼容镜头    可更换镜头有，K，KA，KAF，KAF2，KAF3卡口镜头，以及用转接器后的螺旋卡口镜头，645用・67用镜头<br/>对焦系统类型    SAFOX 12 AF系统<br/>LCD类型   TFT LCD<br/>LCD尺寸   3.2英寸<br/>LCD像素   约103.7万<br/>LCD特性   翻转屏<br/>电池  充电式锂电池<br/>续航能力    可拍摄670张静态图');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/PENTAX K11-MARK2.png',
+                            
+                            }); 
+                    break;
+
+                    case "Pentax_6":
+                        $("._title").text('PENTAX DA HD 35mm f/2.8');
+                        $("._text").text('镜头类型    微距镜头<br/>焦距     35mm<br/>等效35mm画幅焦距     53mm<br/>最大光圈   f/2.8<br/>最小光圈  f/22<br/>视角（对角）     44<br/>镜头结构     9片/8组<br/>光圈叶片  9片<br/>最近对焦距离   14cm<br/>最大放大倍率     1<br/>滤镜口径  49mm<br/>镜头卡口   Pentax AF<br/>防抖    否<br/>尺寸    63×46mm<br/>重量  215g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/DA HD 35mm f 2.8 微距镜头.png',
+                            
+                            }); 
+                    break;
+
+                    case "Pentax_7":
+                        $("._title").text('PENTAX DA HD 21mm f/3.2/DA21');
+                        $("._text").text('镜头类型    广角镜头 <br/>焦距    21mm<br/>等效35mm画幅焦距     32mm<br/>最大光圈   f/3.2<br/>最小光圈  f/22<br/>视角（对角）     22<br/>镜头结构     8片/5组<br/>非球面镜片     1片<br/>最近对焦距离   20cm<br/>最大放大倍率     0.17<br/>滤镜口径   49mm<br/>镜头卡口   Pentax AF<br/>防抖    否<br/>尺寸    63×25mm<br/>重量  155g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/DA HD21mm F 3.2 DA 21.png',
+                            style:'width:20%'
+                            }); 
+                    break;
+
+                    case "Pentax_8":
+                        $("._title").text('PENTAX HD DA 55-300mm PLM WR');
+                        $("._text").text('镜头类型    远摄变焦镜头<br/>焦距   55mm-300mm<br/>等效35mm画幅焦距   84.5mm-460mm<br/>最大光圈   f/4.5-6.3<br/>最小光圈  f/22-32<br/>视角（对角）  29° - 5.4°<br/>镜头结构     14片/11组<br/>低/超低色散镜片    1片<br/>光圈叶片     9片<br/>最近对焦距离   95cm<br/>最大放大倍率     0.30倍<br/>驱动马达  PLM<br/>滤镜口径    58mm<br/>镜头卡口   Pentax AF<br/>防抖    否<br/>尺寸    76.5×89mm<br/>重量    442g<br/>备注     具备防滴结构');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/HD DA 55-300mm PLM WR.png',
+                            
+                            }); 
+                    break;
+
+                    case "Pentax_9":
+                        $("._title").text('PENTAX FA 43mm f/1.9 limited');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距     43mm<br/>最大光圈   f/1.9<br/>最小光圈  f/22<br/>视角（对角）     53<br/>镜头结构     7片/6组<br/>最近对焦距离    45cm<br/>最大放大倍率     0.12<br/>驱动马达   AF马达<br/>滤镜口径   49mm<br/>镜头卡口   Pentax AF<br/>防抖    否<br/>尺寸  64.0 x 27.0mm<br/>重量    155g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/FA 43mm F1.9 limited.png',
+                            style:'width:25%'                            
+                            }); 
+                    break;
+
+                    case "Pentax_10":
+                        $("._title").text('PENTAX HD DFA 70-200mm f/2.8 ED DC AW');
+                        $("._text").text('镜头类型    远摄变焦镜头<br/>焦距   70mm-200mm<br/>最大光圈     f/2.8<br/>最小光圈  f/22<br/>镜头结构   19片/16组<br/>低/超低色散镜片    8片<br/>光圈叶片     9片<br/>最近对焦距离   120cm<br/>最大放大倍率    0.13倍<br/>镜头卡口  Pentax AF<br/>防抖    否<br/>尺寸    91.5 x 203mm<br/>重量     （带底座）2030g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/宾得/HD DFA 70~200mm F2.8 ED DC AW.png',
+                            
+                            }); 
+                    break;
+
+                    default:alert("出错了！！！");
+                } 
+            break;
+
+            case 'brand_Leica' :
+                switch(idn){
+                    case "Leica_1":
+                        $("._title").text('LEICA S');
+                        $("._text").text('产品类型    大中画幅可换镜头数码相机<br/>影像传感器尺寸    约45×30mm<br/>有效像素    3750万<br/>镜头卡口    Leica S<br/>兼容镜头    Leica S 系列镜头<br/>LCD类型   彩色TFT LCD<br/>LCD尺寸   3.0英寸<br/>LCD像素   约92.1万<br/>LCD特性   翻转屏<br/>电池  锂离子电池(7.4V,2100mAh)');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica S.png',
+                            
+                            }); 
+                    break;
+
+                    case "Leica_2":
+                        $("._title").text('LEICA Summarit-S 35/2.5 ASPH (CS)');
+                        $("._text").text('焦距  35mm<br/>等效35mm画幅焦距     28mm<br/>最大光圈   f/2.5<br/>最小光圈  f/22<br/>视角（对角）     75-46<br/>镜头结构  11片/9组<br/>非球面镜片    2片<br/>最大放大倍率   0.090<br/>滤镜口径  55mm<br/>镜头卡口   Leica M, Leica S<br/>防抖     否<br/>尺寸    88×122mm<br/>重量     1080g<br/>备注    镙口Leica');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/徕卡35 2.5 S广角镜头.png',
+                            
+                            }); 
+                    break;
+
+                    case "Leica_3":
+                        $("._title").text('LEICA SUMMICRON-S 100 mm f/2 ASPH.');
+                        $("._text").text('镜头类型    中画幅镜头<br/>焦距    100mm<br/>等效焦距  80mm<br/>最大光圈   F2.0<br/>最小光圈   F22<br/>视角  29°<br/>镜头结构    7片/5组（包含4片低色散镜片，一片双面非球镜片，浮动镜片组）<br/>滤镜口径    82mm<br/>对焦方式   自动对焦<br/>尺寸     91×102mm<br/>镜头重量   910g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica 超高速肖像镜头.png',
+                            
+                            }); 
+                    break;
+
+                    case "Leica_4":
+                        $("._title").text('LEICA TS-APO-ELMAR-S 120/5.6 ASPH.');
+                        $("._text").text('镜头类型    广角变焦镜头<br/>焦距   30mm-90mm<br/>等效35mm画幅焦距    24mm-72mm<br/>最大光圈  f/3.5-f/5.6<br/>最小光圈    f/32<br/>视角（对角）     30mm：81.5 90mm：34<br/>视角（水平）    30mm：73.1 90mm：28.5<br/>视角（垂直）  30mm：51 90mm：19.5<br/>镜头结构  14片/11组<br/>非球面镜片   3片<br/>最近对焦距离   65cm<br/>最大放大倍率     30mm：0.058 90mm：0.154<br/>滤镜口径  90mm<br/>镜头卡口   Leica S<br/>防抖  否<br/>尺寸    101x114mm<br/>重量    1275g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica 转轴镜头.png',
+                            
+                            }); 
+                    break;
+
+                    case "Leica_5":
+                        $("._title").text('LEICA VARIO-ELMAR-S 30-90/3.5-5.6 ASPH.');
+                        $("._text").text('镜头类型    广角变焦镜头<br/>焦距   30mm-90mm<br/>等效35mm画幅焦距    24mm-72mm<br/>最大光圈  f/3.5-f/5.6<br/>最小光圈    f/32<br/>视角（对角）     30mm：81.5 90mm：34<br/>视角（水平）    30mm：73.1 90mm：28.5<br/>视角（垂直）  30mm：51 90mm：19.5<br/>镜头结构  14片/11组<br/>非球面镜片   3片<br/>最近对焦距离   65cm<br/>最大放大倍率     30mm：0.058 90mm：0.154<br/>滤镜口径  90mm<br/>镜头卡口   Leica S<br/>防抖  否<br/>尺寸    101x114mm<br/>重量    1275g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/Leica S 变焦镜头.png',
+                            
+                            }); 
+                    break;
+
+                    case "Leica_6":
+                        $("._title").text('LEICA Super-Elmar-M 18/3.8 ASPH.');
+                        $("._text").text('镜头类型    超广角镜头<br/>焦距    18.3mm<br/>最大光圈     f/3.8<br/>最小光圈  f/16<br/>视角（对角）     [35mm/LEICA M8] 100°/84<br/>镜头结构    8片/7组<br/>非球面镜片     1片<br/>光圈叶片     9片<br/>最近对焦距离   70cm<br/>镜头卡口   Leica M<br/>防抖  否<br/>尺寸    58×61mm<br/>重量  310g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M18mm f3.8.png',
+                            style:'width:25%'
+                            }); 
+                    break;
+
+                    case "Leica_7":
+                        $("._title").text('LEICA SUMMARIT-M35mm/f2.4 ASPH.');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距    35mm<br/>最大光圈     f/2.4<br/>最小光圈  f/16<br/>镜头结构    5片/5组<br/>光圈叶片     5片<br/>最近对焦距离   170cm<br/>镜头卡口   Leica卡口<br/>防抖  否<br/>尺寸    52×53mm<br/>重量  340g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M35mm f2.4.png',
+                            style:'width:18%'
+                            }); 
+                    break;
+
+                    case "Leica_8":
+                        $("._title").text('LEICA Noctilux-M 50/0.95 ASPH.');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距     52.3mm<br/>最大光圈     f/0.95<br/>最小光圈     f/16<br/>视角（对角）     [对角/水平/垂直] 47°/40°/27<br/>镜头结构  8片/5组<br/>非球面镜片     2片<br/>最近对焦距离   100cm<br/>最大放大倍率    0.059<br/>镜头卡口  Leica M<br/>防抖  否<br/>尺寸    73×75.1mm<br/>重量    700g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M50 f0.95 ASPH.png',
+                            
+                            }); 
+                    break;
+
+                    case "Leica_9":
+                        $("._title").text('LEICA APO-Summicron-M 50/2 ASPH.');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距     50mm<br/>最大光圈   f/2<br/>最小光圈    f/16<br/>视角（对角）     47°<br/>视角（水平）  40°<br/>视角（垂直）  27°<br/>镜头结构    8片/5组<br/>非球面镜片     1片<br/>光圈叶片     11片<br/>最近对焦距离  70cm<br/>最大放大倍率     0.088倍<br/>滤镜口径     39mm<br/>镜头卡口   Leica M<br/>防抖  否<br/>尺寸    53×47mm<br/>重量  300g<br/>备注     金属镜筒, 金属卡口');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M50mm f2.0 标准定焦.png',
+                            style:'width:18%'
+                            }); 
+                    break;
+
+                    case "Leica_10":
+                        $("._title").text('LEICA M 135/3.4 APO-Telyt');
+                        $("._text").text('焦距  135mm<br/>最大光圈  f/3.4<br/>最小光圈  f/22<br/>视角（对角）     18<br/>镜头结构     5片/4组<br/>滤镜口径  49mm<br/>镜头卡口   Leica M<br/>防抖  否<br/>尺寸    56X105mm<br/>重量     460g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/徕卡/M135mm f3.4.png',
+                            
+                            });
+                    break;
+
+                    default:alert("出错了！！！");
+                }
+            break;
+
+            case 'brand_Tamron' :
+                switch(idn){
+                    case "Tamron_1":
+                        $("._title").text('TAMRON 10-24/3.5-4.5 Di Ⅱ VC HLD（B023）');
+                        $("._text").text('镜头类型    超广角变焦镜头<br/>焦距  10mm-24mm<br/>等效35mm画幅焦距    16mm-37mm<br/>最大光圈  f/3.5-4.5<br/>最小光圈  f/22-29<br/>视角（对角）  108°44 - 60°2<br/>镜头结构  16片/11组<br/>光圈叶片    7片<br/>最近对焦距离   24cm<br/>最大放大倍率     1:5.3<br/>驱动马达  HLD<br/>滤镜口径    77mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    是<br/>尺寸    佳能卡口：83.6×84.6mm<br/>尼康卡口：83.6×82.1mm<br/>重量    440g<br/>附件     花瓣型遮光罩、镜头盖');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/10-40mm F3.5-4.5 Di VC.png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_2":
+                        $("._title").text('TAMRON SP 15-30/2.8 Di VC USD (A012)');
+                        $("._text").text('镜头类型    超广角变焦镜头<br/>焦距  15mm-30mm<br/>最大光圈  f/2.8<br/>最小光圈  f/22<br/>视角（对角）     110°32 - 71°35(用于35mm 全画幅单反相机时)<br/>85°52 - 49°54(用于APS-C数码单反相机时)<br/>镜头结构  18片/13组<br/>光圈叶片    9片<br/>最近对焦距离   28cm<br/>最大放大倍率     0.2<br/>驱动马达    USD（超声波马达）<br/>镜头卡口     Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF<br/>防抖   是<br/>尺寸    最大直径98.4mm，长度：佳能卡口为145mm / 尼康卡口为142.5mm<br/>重量  1100g<br/>附件    镜头前盖（推压式），镜头后盖<br/>备注   由于索尼数码单反相机内置防抖功能，因此索尼卡口镜头无VC防抖机构');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/15-30mm F2.8 USD.png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_3":
+                        $("._title").text('TAMRON 28-300/3.5-6.3 Di VC PZD (A010)');
+                        $("._text").text('镜头类型    广角变焦镜头<br/>焦距   28mm-300mm<br/>最大光圈     f/3.5-6.3<br/>最小光圈  f/22-40<br/>视角（对角）  75°23‘~8°15’（全画幅）/ 52°58‘~5°20’（APS-C画幅）<br/>镜头结构   19片/15组<br/>非球面镜片   4片<br/>低/超低色散镜片     4片<br/>光圈叶片     7片<br/>最近对焦距离   49cm<br/>最大放大倍率     0.29<br/>驱动马达   PZD（超声波自动对焦马达）<br/>滤镜口径     67mm<br/>镜头卡口   Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF<br/>防抖   是<br/>尺寸    74.4×96mm<br/>重量    540g<br/>附件     花瓣形遮光罩');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/28-300mm F3.5-6.3 PZD.png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_4":
+                        $("._title").text('TAMRON SP 70-200/2.8 Di VC USD G2（A025）');
+                        $("._text").text('镜头类型    远摄变焦镜头<br/>焦距   70mm-200mm<br/>最大光圈     f/2.8<br/>最小光圈  f/22<br/>视角（对角）     34°21 -12°21<br/>镜头结构   23片/17组<br/>光圈叶片    9片<br/>最近对焦距离   95cm<br/>最大放大倍率     1:6.1<br/>驱动马达  USD（超声波马达）<br/>滤镜口径     77mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    是<br/>尺寸    佳能卡口：88×193.8mm<br/>尼康卡口：88×191.3mm<br/>重量  佳能卡口：1500g<br/>尼康卡口：1485g<br/>附件    花瓣形遮光罩、镜头盖、镜头袋、拆卸式脚架底座<br/>备注   防尘防滴构造');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/70-200mm F2.8 USD G2.png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_5":
+                        $("._title").text('TAMRON SP 15-30/2.8 Di VC USD (A012)');
+                        $("._text").text('镜头类型    超广角变焦镜头<br/>焦距  15mm-30mm<br/>最大光圈  f/2.8<br/>最小光圈  f/22<br/>视角（对角）     110°32 - 71°35(用于35mm 全画幅单反相机时)<br/>85°52 - 49°54(用于APS-C数码单反相机时)<br/>镜头结构  18片/13组<br/>光圈叶片    9片<br/>最近对焦距离   28cm<br/>最大放大倍率     0.2<br/>驱动马达    USD（超声波马达）<br/>镜头卡口     Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF<br/>防抖   是<br/>尺寸    最大直径98.4mm，长度：佳能卡口为145mm / 尼康卡口为142.5mm<br/>重量  1100g<br/>附件    镜头前盖（推压式），镜头后盖<br/>备注   由于索尼数码单反相机内置防抖功能，因此索尼卡口镜头无VC防抖机构');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 15-300mm F2.8 Di VC Model A012 超广角.png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_6":
+                        $("._title").text('TAMRON SP 24-70/2.8 Di VC USD G2（A032）');
+                        $("._text").text('镜头类型    标准变焦镜头<br/>焦距   24mm-70mm<br/>最大光圈  f/2.8<br/>最小光圈  f/22<br/>视角（对角）     84°04 - 34°21<br/>镜头结构  17片/12组<br/>非球面镜片   4片<br/>低/超低色散镜片     3片<br/>光圈叶片     9片<br/>最近对焦距离   38cm<br/>最大放大倍率     1:5<br/>驱动马达    USD（超声波马达）<br/>滤镜口径     82mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    是<br/>尺寸    佳能卡口：88.4×111mm<br/>尼康卡口：88.4×108.5mm<br/>重量    佳能卡口：905g<br/>尼康卡口：900g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 24-70mm F2.8 Di VC USD G2(A032).png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_7":
+                        $("._title").text('TAMRON SP 45/1.8 Di VC USD (F013）');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距     45mm<br/>最大光圈   f/1.8<br/>最小光圈  f/16<br/>视角（对角）     51°21 全画幅规格<br/>34°28 APS-C规格<br/>镜头结构  10片/8组<br/>非球面镜片    2片<br/>低/超低色散镜片     1片<br/>光圈叶片     9片<br/>最近对焦距离   29cm<br/>最大放大倍率     0.294<br/>驱动马达  USD（超声波马达）<br/>滤镜口径     67mm<br/>镜头卡口   Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF<br/>防抖   是<br/>尺寸    最大直径80.4mm，长度：佳能卡口为91.7mm / 尼康卡口为89.2mm<br/>重量  佳能卡口为540g / 尼康卡口为520g<br/>附件    花瓣形遮光罩，镜头盖<br/>备注   索尼卡口镜头不含VC光学防抖机构');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 45 F1.8 USD.png',
+                            
+                            });
+                    break;
+
+
+                    //7、8是一个镜头
+                    // case "Tamron_8":
+                    //     $("._title").text('TAMRON SP 45/1.8 Di VC USD (F013）');
+                    //     $("._text").text('镜头类型    标准镜头<br/>焦距     45mm<br/>最大光圈   f/1.8<br/>最小光圈  f/16<br/>视角（对角）     51°21 全画幅规格<br/>34°28 APS-C规格<br/>镜头结构  10片/8组<br/>非球面镜片    2片<br/>低/超低色散镜片     1片<br/>光圈叶片     9片<br/>最近对焦距离   29cm<br/>最大放大倍率     0.294<br/>驱动马达  USD（超声波马达）<br/>滤镜口径     67mm<br/>镜头卡口   Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF<br/>防抖   是<br/>尺寸    最大直径80.4mm，长度：佳能卡口为91.7mm / 尼康卡口为89.2mm<br/>重量  佳能卡口为540g / 尼康卡口为520g<br/>附件    花瓣形遮光罩，镜头盖<br/>备注   索尼卡口镜头不含VC光学防抖机构');
+                    //     $("._pic").attr({
+                    //         src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 45mm F1.8 Di VC F013.png',
+                    //         
+                    //         });
+                    // break;
+
+                    case "Tamron_9":
+                        $("._title").text('TAMRON SP 85/1.8 Di VC USD (F016)');
+                        $("._text").text('焦距  85mm<br/>最大光圈   f/1.8<br/>最小光圈  f/16<br/>视角（对角）     28°33<br/>镜头结构  13片/9组<br/>光圈叶片     9片<br/>最近对焦距离   80cm<br/>最大放大倍率     1:7.2<br/>驱动马达  USD（超声波马达）<br/>滤镜口径     67mm<br/>镜头卡口   Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF<br/>防抖   是<br/>尺寸    佳能卡口：84.8×91.3mm<br/>尼康卡口：84.8×88.8mm<br/>重量    佳能卡口：700g<br/>尼康卡口：660g<br/>附件  遮光罩，镜头盖<br/>备注  由于索尼数码单反相机内置防抖功能，因此索尼卡口镜头不含VC光学防抖。索尼卡口型号为SP 85mm F/1.8 Di USD，不含VC标识');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 85mm F1.8 Di VC USD F016.png',
+                            
+                            });
+                    break;
+
+                    case "Tamron_10":
+                        $("._title").text('TAMRON SP 150-600/5-6.3 Di VC USD G2(A022)');
+                        $("._text").text('镜头类型    超远摄变焦镜头<br/>焦距  150mm-600mm<br/>最大光圈    f/5-6.3<br/>最小光圈    f/32-40<br/>视角（对角）  16°25 - 4°8（全画幅）<br/>镜头结构   21片/13组<br/>光圈叶片    9片<br/>最近对焦距离   220cm<br/>最大放大倍率    1:3.9<br/>驱动马达  USD（超声波马达）<br/>滤镜口径     95mm<br/>镜头卡口   Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon F<br/>防抖    是<br/>尺寸    佳能卡口：108.4×260.2mm;尼康卡口：108.4×257.7mm<br/>重量    佳能卡口：2010g;尼康卡口：1990g<br/>附件    圆形遮光罩、镜头盖、镜头袋<br/>备注    索尼数码单反相机内置防抖功能，因此索尼卡口镜头不含VC光学防抖；重量包含脚架接环');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/腾龙（只有镜头）/SP 150-600mm F5-6.3 Di VC G2 A022.png',
+                            
+                            });
+                    break;
+
+                    default:alert("出错了！！！");
+                }
+            break;
+
+            case 'brand_Zeiss' :
+                switch(idn){
+                    case "Zeiss_1":
+                        $("._title").text('ZEISS Milvus 15/2.8');
+                        $("._text").text('镜头类型    超广角镜头<br/>焦距    15mm<br/>最大光圈   f/2.8<br/>最小光圈  f/22<br/>视角（对角）     110°<br/>视角（水平）     100°<br/>视角（垂直）     76°<br/>镜头结构    15片/12组<br/>非球面镜片   2片<br/>最近对焦距离   25cm<br/>最大放大倍率     1:9<br/>滤镜口径    95mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    ZF.2：102.3×114.0mm；ZE：102.3×117.0mm<br/>重量  ZF.2：880g；ZE：947g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 15 2.8 广角.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_2":
+                        $("._title").text('ZEISS Milvus 18/2.8');
+                        $("._text").text('镜头类型    超广角镜头<br/>焦距    18mm<br/>最大光圈   f/2.8<br/>最小光圈  f/22<br/>视角（对角）     99.9°<br/>视角（水平）    89.4°<br/>视角（垂直）    66.5°<br/>镜头结构  14片/12组<br/>非球面镜片   2片<br/>最近对焦距离   25cm<br/>最大放大倍率     1:7.4<br/>滤镜口径  77mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    ZF.2：90.0×107.0mm；ZE：90.0×109.4mm<br/>重量    ZF.2：675g；ZE：721g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 18 2.8 广角.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_3":
+                        $("._title").text('ZEISS Milvus 35/2');
+                        $("._text").text('镜头类型    广角镜头<br/>焦距     35mm<br/>最大光圈   f/2<br/>最小光圈    f/22<br/>视角（对角）     62°<br/>视角（水平）  53°<br/>视角（垂直）  37°<br/>镜头结构    9片/7组<br/>最近对焦距离    30cm<br/>最大放大倍率     1:5.3<br/>滤镜口径  58mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    不含镜头盖<br/>ZF.2: 77.0×81.3mm；ZE: 77.0×83.0mm<br/>重量  ZF.2: 649g；ZE: 702g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 35 2 人文定焦.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_4":
+                        $("._title").text('ZEISS Milvus 50/2M');
+                        $("._text").text('镜头类型    微距镜头<br/>焦距     50mm<br/>最大光圈   f/2<br/>最小光圈    f/22<br/>视角（对角）     45°<br/>视角（水平）  38°<br/>视角（垂直）  26°<br/>镜头结构    8片/6组<br/>最近对焦距离    24cm<br/>最大放大倍率     1:2<br/>滤镜口径    67mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    不含镜头盖<br/>ZF.2: 80.7×72.8mm；ZE: 81.0×75.3mm<br/>重量  ZF.2: 660g；ZE: 730g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 50 2 MACRO 微距.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_5":
+                        $("._title").text('ZEISS Milvus 50/2M');
+                        $("._text").text('焦距  85mm<br/>最大光圈   f/1.4<br/>最小光圈  f/16<br/>视角（对角）     29°<br/>视角（水平）  24°<br/>视角（垂直）  16°<br/>镜头结构    11片/9组<br/>最近对焦距离   80cm<br/>最大放大倍率     1:8.3<br/>滤镜口径  77mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    不含镜头盖<br/>ZF.2: 90×110mm；ZE: 90×113mm<br/>重量    ZF.2: 1210g；ZE: 1280g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 85mm f 1.4.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_6":
+                        $("._title").text('ZEISS Milvus 100/2M');
+                        $("._text").text('镜头类型    微距镜头<br/>焦距     100mm<br/>最大光圈  f/2<br/>最小光圈    f/22<br/>视角（对角）     25°<br/>视角（水平）  21°<br/>视角（垂直）  14°<br/>镜头结构    9片/8组<br/>最近对焦距离    44cm<br/>最大放大倍率     1:2<br/>滤镜口径    67mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    不含镜头盖<br/>ZF.2: 80.5×103.0mm；ZE: 80.5×104.0mm<br/>重量    ZF.2: 807g；ZE: 843g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 100mm f 2.0 ZF.2 微距.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_7":
+                        $("._title").text('ZEISS Milvus 135/2');
+                        $("._text").text('镜头类型    中远摄/远摄镜头<br/>焦距     135mm<br/>最大光圈  f/2<br/>最小光圈    f/22<br/>视角（对角）     18.7°<br/>视角（水平）    15.6°<br/>视角（垂直）    10.5°<br/>镜头结构  11片/8组<br/>最近对焦距离   80cm<br/>最大放大倍率     1:4<br/>滤镜口径    77mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    ZF.2：89.7×129.1mm；ZE：89.7×132.1mm<br/>重量    ZF.2：1059g；ZE：1123g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Milvus 133mm f 2 ZF.2.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_8":
+                        $("._title").text('ZEISS Otus 85/1.4');
+                        $("._text").text('镜头类型    中远摄/远摄镜头<br/>焦距     85mm<br/>等效35mm画幅焦距     85mm<br/>最大光圈   f/1.4<br/>最小光圈  f/16<br/>视角（对角）     28.24°<br/>视角（水平）   23.71°<br/>视角（垂直）   15.97°<br/>镜头结构     11片/9组<br/>非球面镜片    1片<br/>低/超低色散镜片     6片<br/>光圈叶片     9片<br/>最近对焦距离   80cm<br/>滤镜口径   86mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>重量  佳能版1100g、尼康版1200g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Otus 1.4 85mm ZE 人像.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_9":
+                        $("._title").text('ZEISS Otus 28/1.4');
+                        $("._text").text('镜头类型    广角镜头<br/>焦距     28mm<br/>最大光圈   f/1.4<br/>最小光圈  f/16<br/>视角（对角）     75°<br/>视角（水平）  65°<br/>视角（垂直）  46°<br/>镜头结构    16片/13组<br/>非球面镜片   2片<br/>最近对焦距离   30cm<br/>最大放大倍率     1:5.5<br/>滤镜口径  95mm<br/>镜头卡口   Canon EF, Nikon F<br/>防抖    否<br/>尺寸    （不带盖）ZF.2：108.9×135.0mm；（不带盖）ZE：108.9×137.0mm<br/>重量    ZF.2：1350g；ZE：1390g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Otus 28mm f 1.4.png',
+                            
+                            });
+                    break;
+
+                    case "Zeiss_10":
+                        $("._title").text('ZEISS Planar T* 50/1.4 ZF.2');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距     50mm<br/>最大光圈   f/1.4<br/>最小光圈  f/16<br/>视角（对角）     46/39<br/>镜头结构  7片/6组<br/>最近对焦距离    45cm<br/>滤镜口径   58mm<br/>镜头卡口   Nikon F<br/>防抖  否<br/>尺寸    66x45mm<br/>重量  330g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/蔡司（只有镜头）/Planar T 50mm f 1.4.png',
+                            style:'width:20%'
+                            });
+                    break;
+
+                    default:alert("出错了！！！");
+                }
+            break;
+
+            case 'brand_Sigma' :
+                switch(idn){
+                    case "Sigma_1":
+                        $("._title").text('SIGMA DC EX 17-50/2.8 OS HSM');
+                        $("._text").text('镜头类型    标准变焦镜头<br/>焦距   17mm-50mm<br/>等效35mm画幅焦距    25.5mm-75mm<br/>最大光圈    f/2.8<br/>最小光圈  f/22<br/>视角（对角）     72.4-27.9<br/>镜头结构  17片/13组<br/>光圈叶片    7片<br/>最近对焦距离   28cm<br/>最大放大倍率     0.2<br/>驱动马达    HSM（超声波马达）<br/>滤镜口径     77mm<br/>镜头卡口   Canon EF, Minolta/Konica-Minolta/Sony AF, Nikon AF, Pentax AF, Sigma SA<br/>防抖  是<br/>尺寸    83.5×91.8mm<br/>重量  565g<br/>附件     镜头袋, 遮光罩');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/17-50mm f2 8 EX DC OS HSM.png',
+                            
+                            });
+                    break;
+
+                    case "Sigma_2":
+                        $("._title").text('SIGMA DC 30/1.4 DN | Contemporary');
+                        $("._text").text('镜头类型    标准镜头<br/>焦距     30mm<br/>等效35mm画幅焦距     M4/3卡口：60mm<br/>索尼E卡口：45mm<br/>最大光圈     f/1.4<br/>最小光圈  f/16<br/>视角（对角）     50.7°<br/>镜头结构  9片/7组<br/>光圈叶片  9片<br/>最近对焦距离   30cm<br/>最大放大倍率     1:7<br/>滤镜口径    52mm<br/>镜头卡口   Micro 4/3, Sony E<br/>防抖    否<br/>尺寸    64.8×73.3mm<br/>重量  265g<br/>附件     遮光罩(LH586-01)');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/30mm f1 4 DC DN.png',
+                            
+                            });
+                    break;
+
+                    case "Sigma_3":
+                        $("._title").text('SIGMA DG 105/1.4 HSM Art');
+                        $("._text").text('焦距  105mm<br/>最大光圈  f/1.4<br/>最小光圈  f/16<br/>视角（对角）     23.3°<br/>镜头结构  17片/12组<br/>非球面镜片   1片<br/>低/超低色散镜片     FLD：3片<br/>SLD：2片<br/>光圈叶片  9片<br/>最近对焦距离   100cm<br/>最大放大倍率    1:8.3<br/>驱动马达  HSM（超声波马达）<br/>滤镜口径     105mm<br/>镜头卡口  Canon EF, Nikon F, Sigma SA, Sony E<br/>防抖  否<br/>尺寸    115.9×131.5mm<br/>重量    1645g<br/>附件    镜头包，遮光罩（LH1113-01），三脚架环（TS-111），防护罩（PT-21）<br/>备注   规格为适马卡口版本');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/ART 105 1 4 DG HSM.png',
+                            
+                            });
+                    break;
+
+                    case "Sigma_4":
+                        $("._title").text('SIGMA DG 24-70/2.8 OS HSM Art');
+                        $("._text").text('镜头类型    标准变焦镜头<br/>最大光圈     f/2.8<br/>最小光圈  f/22<br/>视角（对角）     84.1° - 34.3°<br/>镜头结构  19片/14组<br/>非球面镜片   4片<br/>低/超低色散镜片     3片<br/>光圈叶片     9片<br/>最近对焦距离   37cm<br/>最大放大倍率     1:4.8<br/>驱动马达  HSM（超声波马达）<br/>滤镜口径     82mm<br/>镜头卡口   Canon EF, Nikon F, Sigma SA<br/>防抖  是<br/>尺寸    88×107.6mm<br/>附件   镜头包，遮光罩 LH876-04');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/Art 24-70 f2 8 DG OS HSM.png',
+                            
+                            });
+                    break;
+
+                    case "Sigma_5":
+                        $("._title").text('SIGMA DG 35/1.4 HSM Art');
+                        $("._text").text('焦距  35mm<br/>最大光圈   f/1.4<br/>最小光圈  f/16<br/>视角（对角）     63.4°<br/>镜头结构  13片/11组<br/>非球面镜片   2片<br/>低/超低色散镜片     1/4片<br/>光圈叶片   9 片圆形叶片<br/>最近对焦距离  30cm<br/>最大放大倍率     0.129<br/>驱动马达  HSM（超声波马达）<br/>滤镜口径     67mm<br/>镜头卡口   Sigma SA<br/>防抖     否<br/>尺寸    77x94mm<br/>重量  665g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/ART 35mm  F1 4 DG HSM.png',
+                            
+                            });
+                    break;
+
+                    case "Sigma_6":
+                        $("._title").text('SIGMA DG 14/1.8 HSM Art');
+                        $("._text").text('镜头类型    超广角镜头<br/>焦距    14mm<br/>最大光圈   f/1.8<br/>最小光圈  f/16<br/>视角（对角）     114.2°<br/>镜头结构     16片/11组<br/>低/超低色散镜片    7片<br/>光圈叶片     9片<br/>最近对焦距离   27cm<br/>最大放大倍率     1:9.8<br/>驱动马达  HSM（超声波马达）<br/>镜头卡口     Canon EF, Nikon F, Sigma SA<br/>防抖  否<br/>尺寸    95.4×126mm<br/>重量   1170g<br/>附件    镜头包，罩式镜头盖');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/ART 14mm F1 8 DG HSM.png',
+                            
+                            });
+                    break;
+
+                    case "Sigma_7":
+                        $("._title").text('SIGMA DG 150-600/5-6.3 OS HSM | Sports');
+                        $("._text").text('镜头类型    超远摄变焦镜头<br/>焦距  150-600mm<br/>最大光圈  F5-6.3<br/>最小光圈     F22<br/>镜头结构    24片/16组<br/>光圈叶片    9片<br/>最近对焦距离   260cm<br/>最大放大倍率    5x<br/>驱动马达     HSM（超声波马达）<br/>滤镜口径     105mm<br/>镜头卡口  Canon EF, Nikon F, Sigma SA, Sony E<br/>防抖  是<br/>尺寸    121 x 290mm<br/>重量  2960g');
+                        $("._pic").attr({
+                            src: '../camera_pro/static/img/介绍界面素材/单反数码相机/适马（只有镜头）/150-600mm F5-6 3 PG OS HSM.png',
+                            
+                            });
+                    break;
+
+                    default:alert("出错了！！！");
+                }
+            break;
+        }
+    }
+</script>
+
+
+
+</body>
+</html>

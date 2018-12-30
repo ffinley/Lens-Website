@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>胶片相机介绍页面</title>
+	<link rel="stylesheet" href="../camera_pro/static/third/bootstrap3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../camera_pro/static/css/reset.css">
+    <link rel="stylesheet" href="../camera_pro/static/css/style.css">
+	<style>
+        html body {
+            padding: 0;
+            margin: 0;
+            background-color: black;
+            min-height: 100vh;
+        }
+
+        .head {
+            width: 100%;
+            background-color: #fed533;
+            height: 60px;
+        }
+
+        .head_left {
+            float: left;
+            padding-left: 25px;
+            font-size: 28px;
+            margin-top: 8px;
+        }
+
+        .head_right {
+            float: right;
+            padding-right: 20px;
+            font-size: 28px;
+            margin-top: 15px;
+        }
+
+        .content {
+            width: 100%;
+            min-height: 400px;
+            background-color: #000000/*#272727*/;
+            padding-top: 10px;
+        }
+
+        .col-xs-1::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cd-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cd-navigation-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        #dialog-box {
+            -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background: #272727;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: 5000;
+            display: none;
+        }
+		
+		#bks{
+			width:75%;
+            height: 85%;
+			position: relative;
+		}
+
+		#turn_1{
+			position:absolute;
+			/*float: left;*/
+			left: 6%;
+			bottom:35%;
+			z-index: 4998;
+            margin: 0px;
+            padding: 0px;
+		}
+
+        #turn_1:hover{
+            opacity: 0.5;
+        }
+
+		#turn_2{
+			position:absolute;
+			/*float: left;*/
+			right: 6%;
+			bottom:35%;
+			z-index: 4998;
+            margin: 0px;
+            padding: 0px;
+		}
+
+        #turn_2:hover{
+            opacity: 0.5;
+        }
+
+		._reg{
+			display: none;
+            position:absolute;
+            margin: 0 auto;
+            width:75%;
+            height:85%;
+            z-index: 4998;
+            top: 10%;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+		}
+
+        ._reg div img{
+            cursor: pointer;
+        }
+
+        #box{
+			-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0,0,0,0.8);
+            width: 90%;
+            height: 90%;
+            margin: auto;
+            left: 0px;
+            right: 0px;
+            top: 12%;
+            bottom: 0px;
+            position: absolute;
+            z-index: 4999;/*比导航层低一级*/
+            display: none;
+            font-family: 'Microsoft YaHei';
+		}
+
+		._pic{
+            margin-left: 5%;
+            margin-top: 4%;
+            float: left;
+
+        }
+
+        ._title{
+            margin-top: 120px;
+            margin-right: 8%;
+            margin-left: 20%;
+            font-size: 26px;
+            text-align: center;
+            word-wrap: break-word;
+            color: #fed533;
+            width: 40%
+            line-height:150%;
+        }
+
+        ._text{
+            color:white;
+            font-size: 16px;
+            word-wrap:break-word;
+            float: left;
+            margin-top: 40px;
+            margin-right: 2%;
+            margin-left: 8%;
+            width: 40%;
+            line-height: 150%;
+        }
+
+		</style>
+</head>
+
+<body>
+	
+<!-- 头部导航栏 --->
+<div id="nav" class="head">
+    <div class="head_left">
+    	<a href="../index-副本.html"><img src="../camera_pro/static/img/logo.png" style="width: 150px;height: 50px;cursor:pointer"></a>
+        <span style="font-family: Microsoft YaHei;font-size: 0.6em;font-weight:600;color:black;margin-left: 10px;">胶片相机货架</span>
+    </div>
+    <div class="head_right">
+        <div style="display:inline-block;vertical-align:middle">
+            <img src="../camera_pro/static/img/menu.png" style="width: 35px;height: 35px;cursor:pointer" onclick="popup()">
+            <span style="font-weight:bold; cursor:pointer; font-family: Microsoft YaHei;color:black; " onclick="popup()">MENU</span>
+        </div>
+    </div>
+</div>
+
+<!-- 内容部分 -->
+<div class="content">
+	<!-- 书架 -->
+    <div style='width:100%;min-height:400px;z-index: 8;'>
+    	<center style='width:100%;position: relative;'>
+            <img id="turn_1" onclick="turn(event)" style="width:5%;cursor: pointer" src="../camera_pro/static/img/left.png" >
+            <img style="margin:30px 0 0 0;width:75%;" src="bookshelf.png" alt="书柜" id="bks">
+            <img id="turn_2" onclick="turn(event)" style="width:5%;cursor: pointer" src="../camera_pro/static/img/right.png" >
+
+            <div id="layer_1" class="_reg" >
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_1" src="../camera_pro/static/img/fc_body/胶片机/FISHEYE.png"  style="width: 75%;margin-left: 10%;margin-top:5%" onclick="pre(event);_pre()">    
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_2" src="../camera_pro/static/img/fc_body/胶片机/FUJI ACE400.png"  style="width: 85%;margin-top:33%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_3" src="../camera_pro/static/img/fc_body/胶片机/FUJI QuikSnapFlash400.png"  style="width: 88%;margin-top:32%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_4" src="../camera_pro/static/img/fc_body/胶片机/HORIZON Kompakt.png"  style="width: 75%;margin-top:15%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_5" src="../camera_pro/static/img/fc_body/胶片机/Kodak FunSaver.png"  style="width: 85%;margin-left: 10%;margin-top:30%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_6" src="../camera_pro/static/img/fc_body/胶片机/Leica Minilux.png"  style="width: 77%;margin-left: 4%;margin-top:30%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_7" src="../camera_pro/static/img/fc_body/胶片机/LOMO LC-wide.png" style="width: 77%;margin-top:24%;margin-left: 3%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_8" src="../camera_pro/static/img/fc_body/胶片机/Lomography simple use.png" style="width: 82%;margin-top:18%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_9" src="../camera_pro/static/img/fc_body/胶片机/M-A typ 127.png" style="width: 80%;margin-top:28%;margin-left: 5%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_10" src="../camera_pro/static/img/fc_body/胶片机/Minolta XE.png" style="width: 80%;margin-top:20%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_11" src="../camera_pro/static/img/fc_body/胶片机/Nikon FM3A.png" style="width: 80%;margin-top:15%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_12" src="../camera_pro/static/img/fc_body/胶片机/ToLNe 定焦傻瓜胶片机.png" style="width: 80%;margin-top:15%" onclick="pre(event);_pre()" >
+                </div>  
+
+            </div>
+
+            <div id="layer_2" class="_reg">
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_13" src="../camera_pro/static/img/fc_body/胶片机/戴爱娜.png" style="width: 55%;margin-left: 10%;margin-top:0%" onclick="pre(event);_pre()" >    
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_14" src="../camera_pro/static/img/fc_body/胶片机/长城 HME290.png" style="width: 80%;margin-top:20%" onclick="pre(event);_pre()" >    
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_15" src="../camera_pro/static/img/fc_body/胶片机/长城135 HM155.png" style="width: 85%;margin-top:20%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_16" src="../camera_pro/static/img/film/胶卷/CVS 400度 彩色负片.png" style="height: 95%;margin-top:5%" onclick="pre(event);_pre()" >
+                </div>
+
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_17" src="../camera_pro/static/img/film/胶卷/FUJI Velcia 100.png" style="height: 100%;margin-top:8%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_18" src="../camera_pro/static/img/film/胶卷/Fujicolor 100负片.png" style="height: 100%;margin-top:8%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_19" src="../camera_pro/static/img/film/胶卷/fujicolor 200 负片.png" style="height: 105%;margin-top:8%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_20" src="../camera_pro/static/img/film/胶卷/Fujicolor 400 负片.png" style="height: 100%;margin-top:8%;margin-left: 1%" onclick="pre(event);_pre()" >
+                </div>
+
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_21" src="../camera_pro/static/img/film/胶卷/FUJI电影卷 ETERNA 8553.png" style="height: 90%;margin-top:12%;margin-right: 5%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_22" src="../camera_pro/static/img/film/胶卷/ILFORD polypan F.png" style="height: 88%;margin-top:12%;margin-right: 20%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_23" src="../camera_pro/static/img/film/胶卷/Kodak 200 负片.png" style="height: 90%;margin-top:12%" onclick="pre(event);_pre()" >
+                </div>
+                <div style="width:20%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_24" src="../camera_pro/static/img/film/胶卷/Kodak Vison3 250D.png" style="height: 90%;margin-top:12%;margin-right: 20%" onclick="pre(event);_pre()" >
+                </div>
+            </div>
+
+            <div id="layer_3" class="_reg">
+                <div style="width:15%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_25" src="../camera_pro/static/img/film/胶卷/Kodak 电影卷 5207_250D.png" style="height: 90%;margin-top:8%;" onclick="pre(event);_pre()" >    
+                </div>
+                <div style="width:15%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_26" src="../camera_pro/static/img/film/胶卷/Kodar Ektar 100.png" style="height: 92%;margin-top:8%;" onclick="pre(event);_pre()" >    
+                </div>
+                <div style="width:15%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_27" src="../camera_pro/static/img/film/胶卷/lomo135 REVOKOG特效胶卷.png" style="height: 95%;margin-top:6%;" onclick="pre(event);_pre()" >    
+                </div>
+                <div style="width:30%;height:33%;display:inline-block;margin-right:2%;margin-left:2%;">
+                    <img id="film_28" src="../camera_pro/static/img/film/胶卷/lomography 彩负胶卷.png" style="height: 95%;margin-top:3%;" onclick="pre(event);_pre()" >    
+                </div>
+    </div>
+
+
+        </center>
+    </div>
+</div>
+
+
+<!-- popup弹出层 --->
+<div id="dialog-box">
+    <div class="dialog-content">
+        <div id="dialog-message" class="cd-nav">
+            <a href="#" onclick="close_popup()"><img src="../camera_pro/static/img/close.png" style="width: 30px;height: 30px;margin-top: 20px;margin-right:20px;float: right;"></a>
+            <div class="cd-navigation-wrapper" style="padding-top: 0px">
+                <div class="cd-half-block">
+
+                    <nav>
+                        <ul class="cd-primary-nav" style="margin-top: 80px;">
+                            <li style="line-height: 350%"><a href="../index-副本.html"  style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei';">工作台</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORKBENCH</a></li>
+
+                            <li style="line-height: 350%"><a href="../intro_cam/index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">数码相机</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../intro_cam/index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">DIGITAL CAMERA</a></li>
+
+                            <li style="line-height: 350%"><a href="#" onclick="close_popup()" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">胶片机</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="#" onclick="close_popup()" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">GRAIN CAMERA</a></li>
+
+                            <li style="line-height: 350%"><a href="../lens_earth/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">世界画廊</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../lens_earth/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORLD GALARY</a></li>
+
+                            <li style="line-height: 350%"><a href="../about us/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">联系我们</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../about us/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">ABOUT AS</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="cd-half-block">
+                        <img src="../camera_pro/static/img/导航.jpg" style="width:70%;margin-top: 40px;float: right;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 具体内容弹出层 -->
+<div id="box">
+    <img style="float: right;width:25px;height:25px;cursor: pointer;margin-top: 20px;margin-right: 20px;" src="../camera_pro/static/img/close.png"  onclick="_close()">
+	<img class="_pic" src="">
+	<h3 class="_title"></h3>
+	<p class='_text'></p>  
+</div>
+
+
+<script src="../camera_pro/static/js/jquery-3.2.1.min.js"></script>
+<script src="../camera_pro/static/third/bootstrap3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	    function popup() { //打开导航
+        	//加载弹出层
+        	$('body').toggleClass('navigation-is-open');
+        	$('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+        	});
+        	//淡入动画
+        	$('#dialog-box').css("opacity", 0);
+        	$(".cd-primary-nav").css("opacity", 0);
+        	$('#dialog-box').show();
+        	$('#dialog-box').fadeTo(400,1,function () { // 400是毫秒单位，透明度从0-100%总用时400ms
+
+        	});
+        	$('.cd-primary-nav').fadeTo(400,1,function () {
+
+        	});
+   		}
+
+    	function close_popup() { //关闭导航
+        //淡出动画
+        $('#dialog-box').fadeTo(400,0,function () {
+            //淡出动画完成后隐藏
+            $('#dialog-box').hide();
+            $('body').toggleClass('navigation-is-open');
+            $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+            });
+        });
+
+    	}
+</script>
+
+<script type="text/javascript">
+	//加载页面时默认为第一页
+	window.onload=function(){
+		$('#layer_1').css('display', 'block');
+	}
+
+	//翻页功能
+	function turn(ev){
+		var page_now;
+		var style_now;
+		for(var i=0;i<=2;i++){
+			var page=document.getElementById('layer_'+(i+1));
+			//适用IE
+			if (page.currentStyle) {
+				style_now=page.currentStyle['display'];
+			}
+			//适用其它浏览器
+			else{
+				style_now=document.defaultView.getComputedStyle(page,null)['display'];
+			}
+			//获取现在显示的页面的id
+			if(style_now==='block'){
+				page_now='layer_'+(i+1);
+				break;
+			}
+		}
+		
+		var btn_id=$(ev.target).attr('id');
+		$('._reg').each(function() {
+			$(this).css('display', 'none');	
+		});
+		if(btn_id=='turn_1'){
+			switch(page_now){
+				case 'layer_1':
+					$('#layer_1').css('display', 'block'); //之前已经全部消除显示了，这时需要显示layer_1
+				break;
+				case 'layer_2':
+					$('#layer_1').css('display', 'block');
+				break;
+				case 'layer_3':
+					$('#layer_2').css('display', 'block');
+				break;
+				default: alert("出错了！！！");	
+			}
+		}
+		else if(btn_id=='turn_2'){
+			switch(page_now){
+				case 'layer_1':
+					$('#layer_2').css('display', 'block');
+				break;
+				case 'layer_2':
+					$('#layer_3').css('display', 'block');
+				break;
+				case 'layer_3':
+					$('#layer_3').css('display', 'block');
+				break;
+				default: alert("出错了！！！");	
+			}
+		}
+		else
+			alert("出错了！！!");	
+	}
+
+
+    //显示具体介绍内容
+    function pre(ev) {
+        var idn=$(ev.target).attr('id');
+        $('._title').text('');
+        $('._text').text('');
+
+        switch(idn){
+            
+            case "film_1":
+                $("._title").append('FISHEYE');
+                $("._text").append('170°的超广大视角<br/>内建闪光灯，轻松驾驭夜间拍摄<br/>两种快门速度：1/100和长时间曝光（B门）<br/>可实现双重曝光');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/FISHEYE.png',
+                    style: 'width:44%'
+                    });
+
+            break;
+            case "film_2":
+                $("._title").append('FUJI xtra400');
+                $("._text").append('产品类型：一次性傻瓜相机，可拍27张，C-41冲洗方式<br/>适用胶卷类型：彩色负片胶卷<br/>焦距：35mm<br/>ISO：400<br/>');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/FUJI ACE400.png',
+                    style: 'width:44%;margin-top:14%'
+                    });
+            break;
+            case "film_3":
+                $("._title").append('FUJI QuikSnapFlash400');
+                $("._text").append('柯达135一次性傻瓜胶卷相机<br/>机身小巧轻便，到手即拍，普通彩色负片冲洗工艺<br/>ISO 800 手动闪光灯<br/>每台可拍摄27张');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/FUJI QuikSnapFlash400.png',
+                    style: 'width:44%;margin-top:14%'
+                    });
+            break;
+            case "film_4":
+                $("._title").append('HORIZON Kompakt');
+                $("._text").append('产品类型：全机械胶片相机，无需电池供电<br/>焦距：28mm<br/>取景范围：120°水平广角及45°垂直角度<br/>f/8固定光圈，两种快门速度随意选择<br/>对焦方式：免对焦<br/>观景窗：光学观景窗');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/HORIZON Kompakt.png',
+                    style: 'width:44%;margin-top:6%'
+                    });
+            break;
+            case "film_5":
+                $("._title").append('Kodak Funsaver Single Use Camera');
+                $("._text").append('柯达135一次性傻瓜胶卷相机<br/>机身小巧轻便，到手即拍，普通彩色负片冲洗工艺<br/>ISO 800 手动闪光灯<br/>每台可拍摄27张');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/Kodak FunSaver.png',
+                    style: 'width:44%;margin-top:14%'
+                    });
+            break;
+            case "film_6":
+                $("._title").append('Leica Minilux');
+                $("._text").append('手动快门速度和光圈设置<br/>16-135mm<br/>带测光<br/>快门速度：从1s-1/1000s，B门支持长时间曝光，闪光同步');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/Leica Minilux.png',
+                    style: 'width:44%;margin-top:13%'
+                    });
+            break;
+            case "film_7":
+                $("._title").append('Lomo LC-Wide 35 mm Film Camera');
+                $("._text").append('画幅三种可选：正常广角模式、正方形模式、半格模式<br/>自动曝光+自动快门系统+两段式焦距<br/>标志性的暗角效果<br/>可实现多重曝光<br/>焦距：17mm<br/>观景窗：直接光学观景窗');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/LOMO LC-Wide.png',
+                    style: 'width:44%;margin-top:12%'
+                    });
+            break;
+            case "film_8":
+                $("._title").append('Lomography Simple Use');
+                $("._text").append('三款彩色滤片，呈现不同色彩效果<br/>以彩色滤片体现LOMO风格br/>焦距：31mm<br/>快门速度：1/120s<br/>光圈：f/9<br/>可重新上卷');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/Lomography simple use.png',
+                    style: 'width:44%;margin-top:12%'
+                    });
+            break;
+            case "film_9":
+                $("._title").append('LEICA M-A(Typ 127)');
+                $("._text").append('产品类型：旁轴胶片相机<br/>光学变焦：8.4倍<br/>镜头类型：伸缩式<br/>镜头说明：支持16-135mm焦段范围徕卡M口镜头<br/>镜头用途：广角，长焦<br/>取景器类型：光学<br/>取景器描述：0.72x放大倍率<br/>最高快门速度：1/1000s<br/>闪光灯类型：内置<br/>闪光灯同步速度：1/50s<br/>外形特点：全机械结构');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/M-A typ 127.png',
+                    style: 'width:44%;margin-top:14%'
+                    });
+            break;
+            case "film_10":
+                $("._title").append('Minolta XE');
+                $("._text").append('产品类型：胶片单反相机<br/>使用底片：35胶片<br/>对焦方式：手动对焦<br/>可实现曝光控制<br/>曝光模式  手动曝光，光圈优先，程序自动曝光<br/>快门结构：焦平面快门<br/>快门速度：4-1/1000秒');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/Minolta XE.png',
+                    style: 'width:44%;margin-top:12%'
+                    });
+            break;
+            case "film_11":
+                $("._title").append('NIKON FM3A');
+                $("._text").append('产品类型：手动对焦胶片单反相机<br/>镜头卡口：Nikon F<br/>取景器：眼平五棱取景器, 固定<br/>取景范围：92%<br/>取景放大倍率：0.84X倍<br/>测光模式：中央重点测光<br/>ISO感光度：ISO25-5000，M ISO12-6400<br/>曝光补偿：±2EV以1/3EV级调整<br/>自动包围曝光：无<br/>多重曝光：有<br/>快门速度：1/4000s~8s，B<br/>闪光同步速度：1/125s<br/>B门：有<br/>内置闪光灯后帘同步：有<br/>');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/Nikon FM3A.png',
+                    style: 'width:44%;margin-top:10%'
+                    });
+            break;
+            case "film_12":
+                $("._title").append('ToLNe');
+                $("._text").append('镜头：32mm/F7.9双片式镜头<br/>对焦范围：相机至主体距离1m~无穷远<br/>快门速度：1/125秒，机械快门<br/>取景器：逆伽利略式平视取景<br/>闪光灯：内藏电子闪光灯，充电时间约20秒，可关闭<br/>拍摄标准照片时闪光灯拍摄距离    ISO100：1-1.5米；ISO200：1-2米；ISO400：1-2.5米<br/>电源：一节AAA电池（7号电池）注：切勿使用可充电式镍镉电池<br/>功能    手动上卷，手动过片，手动回卷，B门，多重曝光，闪光灯手动控制，三款滤镜可更换，背景片效果');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/ToLNe 定焦傻瓜胶片机.png',
+                    style: 'width:44%;margin-top:10%'
+                    });
+            break;
+
+                        //这个的style要改！！！！！！！！！！！！！！！
+            case "film_13":
+                $("._title").append('戴安娜F+');
+                $("._text").append('产品类型：中片幅胶片相机<br/>闪光灯可更换三种不同颜色的滤片<br/>两种快门速度：1/60和长时间曝光<br/>可实现双重曝光');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/戴爱娜.png',
+                    style: 'height:80%'
+                    });
+            break;
+            case "film_14":
+                $("._title").append('长城 HME290');
+                $("._text").append('镜头：28mm，F/4.5，三片三组，光学玻璃镜头<br/>快门：5s，单速机械快门<br/>取景器：逆伽利略式光学取景器，全景模式附有全景遮片，±1视度调节<br/>对焦系统：主动式红外线自动对焦系统 <br/>对焦范围：1.2m ～ 无限远<br/>自拍：电子自拍，约10秒延时间隔<br/>ISO：100/200/400<br/>过片倒片：电动，可在任何时刻中途回卷<br/>闪光灯：内藏式，自动闪光，有补光功能，红眼消除<br/>电源：2节5号碱性电池<br/>三脚架：支持标准口三脚架<br/>外观尺寸：116.5mm长 x 66mm高 x 38.5mm厚<br/>重量：170g（不含电池）');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/长城 HME290.png',
+                    style: 'width:44%;margin-top:14%'
+                    });
+            break;
+            case "film_15":
+                $("._title").append('长城135 HM155');
+                $("._text").append('镜头：28mm，F9.5，广角镜头<br/>单速机械快门：1/125S<br/>自动闪光灯系统（拍摄光源不足时自动开启）<br/>自动过卷，适合胶片新手的入门机<br/>本机生产于2000年左右，由北京照相总厂出品');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/fc_body/胶片机/长城135 HM155.png',
+                    style: 'width:44%;margin-top:12%'
+                    });
+            break;
+
+
+                        //所有的胶卷的style要改！！！！！！！！！！！！！！！（用height规定的）
+            case "film_16":
+                $("._title").append('CVS 400度 彩色负片');
+                $("._text").append('适用于135胶片相机，一卷可拍24张<br/>ISO：400<br/>风格：晴天、阴雨或阴影下、背光均适合拍摄<br/>目前已停产，绝版胶卷');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/CVS 400度 彩色负片.png',
+                    style: 'height:80%;margin-top:6%;margin-left:13%'
+                    });
+            break;
+            case "film_17":
+                $("._title").append('FujiChrome Velvia 100RVP');
+                $("._text").append('产品类型：35mm专业彩色反转片（正片）<br/>感光度（ISO）：100<br/>一卷可拍摄36张<br/>鲜艳高饱和的色彩，专业级风景胶卷');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/FUJI Velcia 100.png',
+                    style: 'height:80%;margin-top:6%;margin-left:10%'
+                    });
+
+            break;
+            case "film_18":
+                $("._title").append('FUJI FUJICOLOR 100');
+                $("._text").append('厂家推荐价格：6.98（美元）<br/>感光度(ISO)：100<br/>代号：CN<br/>分辨率/解像力：非常高<br/>锐利度：非常高<br/>色彩：中等<br/>颗粒度：超细<br/>反差：高<br/>宽容度：宽<br/>尺寸：35mm胶片<br/>简评：色彩还原真实的日用胶片');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/Fujicolor 100负片.png',
+                    style: 'height:80%;margin-top:6%;margin-left:8%'
+                    });
+            break;
+            case "film_19":
+                $("._title").append('FUJI FUJICOLOR 200');
+                $("._text").append('厂家推荐价格：7.95（美元）<br/>感光度(ISO)：200<br/>代号：CA<br/>分辨率/解像力：高<br/>锐利度：非常高<br/>色彩：提升<br/>颗粒度：非常细<br/>反差：中<br/>宽容度：宽<br/>尺寸：35mm胶片<br/>简评：锐利，颗粒细，色彩真实，四层感色层');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/fujicolor 200 负片.png',
+                    style: 'height:80%;margin-top:6%;margin-left:10%'
+                    });
+            break;
+            case "film_20":
+                $("._title").append('FUJI FUJICOLOR 400');
+                $("._text").append('厂家推荐价格：9.87 （美元）<br/>感光度(ISO)：400<br/>代号：NPH<br/>分辨率/解像力：高<br/>锐利度：高<br/>色彩：中等<br/>颗粒度：非常细<br/>反差：中<br/>宽容度：宽<br/>尺寸：35mm胶片, 120胶片, 220胶片<br/>简评：真实还原肤色，适于婚礼及人像摄影');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/Fujicolor 400 负片.png',
+                    style: 'height:80%;margin-top:6%;margin-left:5%'
+                    });
+            break;
+            case "film_21":
+                $("._title").append('FUJI ETERNA 8553 250T');
+                $("._text").append('产品类型：彩色负片，135灯光电影负片<br/>胶卷规格：135mm<br/>感光度（ISO）：100<br/>一卷可拍36张<br/>已于2012年9月停产，目前仅存过期卷');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/FUJI电影卷 ETERNA 8553.png',
+                    style: 'height:80%;margin-top:6%;margin-left:9%'
+                    });
+                
+            break;
+            case "film_22":
+                $("._title").append('ILFORD polypan F');
+                $("._text").append('产品类型：黑白胶卷<br/>感光度（ISO）：50<br/>伊尔福代工的OEM胶卷');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/ILFORD polypan F.png',
+                    style: 'height:70%;margin-top:6%'
+                    });
+            break;
+            case "film_23":
+                $("._title").append('KODAK 200');
+                $("._text").append('厂家推荐价格：8.00（美元）<br/>感光度(ISO)：200<br/>代号：GB<br/>分辨率/解像力：高<br/>锐利度：非常高<br/>色彩：提升<br/>颗粒度：非常细<br/>反差：中, 高<br/>宽容度：宽<br/>尺寸：5mm胶片<br/>简评：适于人像，时装及风光摄影');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/Kodak 200 负片.png',
+                    style: 'height:80%;margin-top:6%;margin-left:9%'
+                    });
+            break;
+            case "film_24":
+                $("._title").append('Kodak Vison3 250D');
+                $("._text").append('类型：彩色负片规格8mm, 16mm, 35mm, 65mm<br/>感光度（ISO）：250<br/>宽容度：-5 to +5 档<br/>迫冲：3 档');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/Kodak Vison3 250D.png',
+                    style: 'height:70%;margin-top:8%'
+                    });
+            break;
+            case "film_25":
+                $("._title").append('Kodak 电影卷 5207/250D');
+                $("._text").append('产品类型：35mm彩色负片胶卷<br/>感光度（ISO）：250<br/>胶卷为电影负片，只能使用ECN-2工艺冲洗<br/>使用最新技术增加了高光过曝段的曝光宽容度，有效较少过曝的情况');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/Kodak 电影卷 5207_250D.png',
+                    style: 'height:70%;margin-top:8%'
+                    });
+
+            break;
+            case "film_26":
+                $("._title").append('Kodak Ektar100');
+                $("._text").append('产品类型：专业级彩色负片<br/>一卷可拍摄36张<br/>感光度（ISO）：100<br/>超好的颗粒表现');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/Kodar Ektar 100.png',
+                    style: 'height:70%;margin-top:8%'
+                    });
+
+            break;
+            case "film_27":
+                $("._title").append('REVOLOG特效胶卷');
+                $("._text").append('感光度（ISO）：200<br/>一卷可拍摄36张<br/>特点：增加了胶卷本身的色谱波长，使整体的色调发生癌变，可能由绿变红，或者红蓝青等，整体效果会根据冲洗方式而稍作改变');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/lomo135 REVOKOG特效胶卷.png',
+                    style: 'height:70%;margin-top:8%;margin-left:8%'
+                    });
+
+            break;
+            case "film_28":
+                $("._title").append('Lomography Color Negative');
+                $("._text").append('产品类型：35mm彩色负片胶卷<br/>感光度（ISO）：100（红色）/400（蓝色）/800（绿色）<br/>一卷可拍摄36张');
+                $("._pic").attr({
+                    src: '../camera_pro/static/img/film/胶卷/lomography 彩负胶卷.png',
+                    style: 'height:52%;margin-top:10%'
+                    });
+
+            break;
+
+            default:alert("出错了！！！");
+        }
+    }
+
+	//显示悬浮框
+    function _pre(){   	
+	   	$('#box').show();
+
+    }
+
+    //关闭半透明框
+    function _close(){
+        $('#box').hide();
+    }
+
+</script>
+
+
+
+</body>
+</html>

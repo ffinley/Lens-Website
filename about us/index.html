@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>About Us</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+		<meta name="description" content="This page is about digital camera and grain camera and you can have fun here while you learn something.">
+		<meta name="keywords" content="lens,camera,film,workbench,digital camera,grain camera,world galary">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<link rel="stylesheet" href="assets/css/main.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+
+		<!-- 给网页标题加图标 -->
+		<!-- <link rel="shortcut icon" href="favicon.ico">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'> -->
+		
+		<style type="text/css">
+			body,td,th {
+		    font-family: FUTURA LT BOOK, Arial, sans-serif;
+			}
+			#a:hover{
+				background-color: rgba(254, 213, 51, 0.7);
+			}
+			*{
+				margin:0;padding:0;list-style-type:none;
+			}
+			a,img{
+				border:0;
+			}
+			body{
+				font:12px;
+			}
+			.clearfix:after{
+				content:".";display:block;height:0;clear:both;visibility:hidden;
+			}
+			.clearfix{
+				display:inline-table;
+			}
+			*html .clearfix{
+				height:1%;
+			}
+			.clearfix {
+				display:block;
+			}
+			*+html .clearfix{
+				min-height:1%;
+			}
+			.lens{
+				width:1250px;margin:0 auto 0 auto;overflow:hidden;
+			}
+			.lens ul{
+				width:1250px;}
+			.lens ul li{
+				float:left;margin-right:6px;margin-bottom:10px;display:inline;width:300px;height:430px;overflow:hidden;position:relative;
+			}
+			.lens ul li .photo{
+				width:384px;height:613.867px;overflow:hidden;
+			}
+			.lens .rsp{
+				width:384px;height:613.867px;overflow:hidden;position:absolute;background:#000;top:0px;
+			}
+			.lens .text{
+				position:absolute;width:300px;height:613.867px;left:-300px;top:0px;overflow:hidden;
+			}
+			.lens .text h3{
+				width:300px;margin-top:100px;height:50px;line-height:50px;text-align:center;color:#FFFFFF;font-size:20px;
+			}
+			.lens .text a{
+				text-decoration:none;
+			}
+			.lens .text div{
+				text-align:center;color:#FFFFFF;font-size:18px;
+			}
+		</style>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script>
+		$(function(){
+			$(".lens ul li .rsp").hide();	
+			$(".lens ul li").hover(function(){
+				$(this).find(".rsp").stop().fadeTo(500,0.5)
+				$(this).find(".text").stop().animate({left:'0'}, {duration: 500})
+			},
+			function(){
+				$(this).find(".rsp").stop().fadeTo(500,0)
+				$(this).find(".text").stop().animate({left:'300'}, {duration: "fast"})
+				$(this).find(".text").animate({left:'-300'}, {duration: 0})
+			});
+
+		});
+		</script>
+	</head>
+	
+	<body class="is-preload">
+			<div id="page-wrapper">
+					<div id="wrapper">
+							<section class="panel banner right">
+								<div class="content color0 span-3-75">
+									<h1 class="major" style="padding: 0;margin-top: 10%">
+										<a href="../index-副本.html">
+											<img src="images/LENS+logo.png" width=30% alt="返回首页"/>
+										</a>
+									</h1>
+									<h5 style="line-height: 200%;font-weight: normal;font-size: 15px">
+										这是一个瞎搞的网站，我们也不知道怎么做出来。<br/>我们只是可怜的网传学生，我们不懂数码单反相机，不懂胶片机；也不懂数据库，更不懂代码......<br/>
+										希望你们能够喜欢这个看起来很高端、实际上也很高端的网站；<br/>希望你们可以在这个简陋的网站中学到知识，然后体验一下假装手动组装相机的快落。<br/>如果你们不喜欢，我们就唱三句半。<br/><br/>
+									</h5>
+									<ul class="actions">
+										<li style="padding: 0;margin: 0">
+											<a href="#first" class="button primary color1 circle icon fa-angle-right">Next</a>
+										</li>
+									</ul>
+								</div>
+								<div class="lens" style="width: 384px;height: 613.867px">
+									<ul class="clearfix">
+										<li style="width: 384px;height: 613.867px">
+											<div class="photo"><img src="images/pic01.jpg"></div>
+											<div class="rsp" style="width: 100%"></div>		
+											<div id="mask" class="text" style="width: 384px;text-align: center;margin-top:55%;opacity: 0.5"><a href="../index-副本.html"><img src="images/返回首页.png"></a></div>
+										</li>
+									</ul>
+								</div>	
+							</section>
+
+							<section class="panel spotlight large" id="first">
+								<div class="content span-7">
+									<h2>开发人员<br/><br/></h2>
+									<h2><br/><br/><br/><br/>联系我们</h2>
+									<h5><b>E-mail：123456789@163.com<br/>
+										Tel：13800000000<br/>
+										Address：武汉大学新闻与传播学院<br/>
+										Postal Code：430072</b>
+									</h5>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="images/pic02.png" alt="">
+								</div>
+
+							
+								<div class="lens">
+									<ul class="clearfix">
+										<li>
+											<div class="photo"><img src="images/1.jpg" width="300" height="430"></div>
+											<div class="rsp"></div>
+											<div class="text"><h3><br/><br/>李雨浛 <b>Yuhan Li</b></h3><div><b>UI</b>设计师&珞珈山小甜</div></div>
+										</li>
+										<li>
+											<div class="photo"><img src="images/2.jpg" width="300" height="430"></div>
+											<div class="rsp"></div>
+											<div class="text"><h3><br/><br/>王韵 <b>Yun Wang</b></h3><div>网站规划&枫十四小花</div></div>
+										</li>
+										<li>
+											<div class="photo"><img src="images/3-1.jpg" width="300" height="430"></div>
+											<div class="rsp"></div>
+											<div class="text"><h3><br/><br/>邵一帆 <b>Yifan Shao</b></h3><div>Web前端&湖滨最高海拔</div></div>
+										</li>
+										<li>
+											<div class="photo"><img src="images/4.jpg" height="430"></div>
+											<div class="rsp"></div>
+											<div class="text"><h3><br/><br/>徐智勇 <b>Zhiyong Xu</b></h3><div>码农&低配余文乐</div></div>
+										</li>	
+									</ul>
+									<div class="clear"></div>
+								</div>
+							</section>			
+					</div>
+			</div>
+
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

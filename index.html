@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="camera_pro/static/css/reset.css">
+    <link rel="stylesheet" href="camera_pro/static/css/style.css">
+    <link rel="stylesheet" href="camera_pro/static/third/bootstrap3/css/bootstrap.min.css">
+<!--  按钮样式表   <link rel="stylesheet" href="camera_pro/static/css/btn_style.css"> -->
+<!--图片遮罩样式表-->
+	<!-- <link rel="stylesheet" type="text/css" href="camera_pro/static/css/style_common.css" />
+	<link rel="stylesheet" type="text/css" href="camera_pro/static/css/style10.css" />
+	<link href='http://fonts.useso.com/css?family=Oswald' rel='stylesheet' type='text/css' /> -->
+	<!-- <link rel="stylesheet" type="text/css" href="camera_pro/static/css/demo.css" /> -->
+
+    <style>
+        html body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .head {
+            width: 100%;
+            background-color: #fed533;
+            height: 60px;
+        }
+
+        .head_left {
+            float: left;
+            padding-left: 25px;
+            font-size: 28px;
+            margin-top: 8px;
+        }
+
+        .head_right {
+            float: right;
+            padding-right: 20px;
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        .content {
+            width: 100%;
+            min-height: 400px;
+            background-color: #000000/*#272727*/;
+            padding-top: 12px;
+        }
+
+        .camera_type_btn {
+            display: inline-block;
+            margin-right: 20px;
+            padding:3px;
+            background: #FFDD53;
+            color:black;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .side_panel {
+            width: 80%;
+            height: 150px;
+            margin-left: 10%;
+            margin-bottom: 25px;
+            background: #000000;
+            border-color: #fedb5f;
+        }
+
+		.side_panel:hover {
+           /* opacity: 0.4;
+            filter:alpha(opacity=40); /* For IE8 and earlier */
+            cursor:pointer;
+           /* background-color: rgb(254,213,51);*/
+        }
+
+        .side_list {
+            width: 25%;
+            min-height: 400px;
+            max-height: 600px;
+            padding-top: 0px;
+            overflow-y: auto;
+        }
+
+        .center_panel {
+            width: 80%;
+            height: 400px;
+            margin-left: 10%;
+            margin-bottom: 5px;
+            background: #000000;
+            border: 0px;
+            position: relative;
+        }
+
+       /* .fenge {
+            padding: 0 0 600px 0; */ /*用padding-bottom的方式设定竖线长度*/
+        /*    border-left: 2px solid #FFDD53;
+            font-size: 0;
+        }*/
+
+        .col-xs-1::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cd-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cd-navigation-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .side_lens {
+            width: 90%;
+            height: 130px;
+            margin-top: 10px;
+            margin-left: 5%;
+        }
+
+        .side_film_body{
+            width: 72%;
+            height: 130px;
+            margin-left: 13%;
+            margin-top: 10px;
+        }
+
+        .side_cam_body {
+            width: 50%;
+            height: 130px;
+            margin-top: 10px;
+            margin-left: 25%;
+        }
+
+        .side_film{
+            width: 50%;
+            height: 130px;
+            margin-top: 10px;
+            margin-left: 25%;
+        }
+
+        .center_lens {
+            width: 45%;
+            height: 40%;
+            margin-top: 160px;
+            margin-left: 12%;
+            position: absolute;
+        }
+
+        .center_film_body {
+            width: 70%;
+            height: 60%;
+            margin-top: 15%;
+            margin-left: 5%;
+            position: absolute;
+            z-index: 9;
+        }
+
+        .center_cam_body {
+            width: 34%;
+            height: 60%;
+            margin-top: 80px;
+            margin-left: 53%;
+            position: absolute;
+            z-index: 9;
+        }
+
+        .center_film{
+            width: 25.5%;
+            height: 45%;
+            margin-top: 20%;
+            margin-left: 75%;
+            position: absolute;
+        }
+
+        #dialog-box {
+            -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background: #272727;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: 5000;
+            display: none;
+        }
+		
+		.intro_btn{
+			width:50px;
+			height: 50px;
+		}
+
+		.intro_btn:hover{
+            cursor: pointer;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            width:55px;
+            height: 55px;
+		}
+
+		/*.detail_btn{
+			border-color: red;
+			margin-top:5px; 
+			width:180px;
+			height: 30px;
+		}
+
+		.detail_btn:hover{
+			background-color:#fed533;
+		}*/
+
+        .info{
+        	text-align: center;
+        	color: #FFDD53;
+        	font-family: 'Microsoft YaHei';
+        	font-weight: 400;
+        	font-size: 18px;
+            margin-top: 16px;
+            padding: 0px;
+        }
+
+		#detail_box{
+			-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0,0,0,0.8);
+            width: 90%;
+            height: 90%;
+            margin: auto;
+            left: 0px;
+            right: 0px;
+            top: 12%;
+            bottom: 0px;
+            position: absolute;
+            z-index: 4999;/*比导航层低一级*/
+            display: none;
+            font-family: 'Microsoft YaHei';
+		}
+		/*参数显示中的图片*/
+		.pic{
+			width: 50%;
+            margin-top: 60px;
+            margin-left: 30px;
+            float: left;
+		}
+		/*参数显示中的标题*/
+		.title{
+            color: #fed533;
+            float: right;
+            text-align: center;
+            margin-top: 120px;
+            margin-right: 30px;
+            word-wrap:break-word;
+            font-size: 20px;
+            width:38%;
+            line-height: 30px;
+
+		}
+		/*参数显示中的说明*/
+		.text{
+			color:white;
+			font-size: 16px;
+            text-align: center;
+			word-wrap:break-word;
+            float: right;
+            margin-top: 30px;
+            margin-right: 60px;
+            width: 38%;
+            line-height: 25px;
+		}
+
+     /*   .lens{}
+        .dc{}
+*/
+    
+        #canon_mask1{
+            position: absolute;
+            margin-top: 0;
+            top: 140px;
+            left: 44px;
+            width: 229px;
+            height: 30px;
+            background: rgba(253,211,70,0.8);
+            display: none;
+            text-align: center;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+<!-- 头部导航栏 --->
+<div id="nav" class="head">
+    <div class="head_left">
+    	<a href="#nav"><img src="camera_pro/static/img/logo.png" style="width: 150px;height: 50px;cursor:pointer"></a>
+        <!-- <div style="display:inline-block;vertical-align:middle">
+        <img src="camera_pro/static/img/poppup_btn.png" style="width: 30px;height: 30px;cursor:pointer" onclick="popup()">
+        <span style="font-weight: bold;">Lens+</span>
+    	</div> -->
+    </div>
+
+    <div class="head_right">
+        <div style="display:inline-block;vertical-align:middle">
+        <img src="camera_pro/static/img/menu.png" style="width: 35px;height: 35px;cursor:pointer" onclick="popup()">
+        <span style="font-weight:bold; cursor:pointer;font-family: 'Microsoft YaHei';color:black;" onclick="popup()">MENU</span></div>
+    </div>
+</div>
+
+<!-- 内容 --->
+<div class="content">
+    <!-- 中间分类按钮 --->
+    <div id="btn_part" style="text-align:center;">
+        <div style="margin: 0 auto">
+            <button class="camera_type_btn" onclick="reset_2()">数码相机</button>
+            <button class="camera_type_btn" onclick="reset_1()">胶片机</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-left: 0;margin-right: 0">
+
+        <!-- 左侧镜头列表 --->
+        <div id="left_list" class="col-xs-1 side_list">
+        	<!-- 佳能镜头 -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Cannon_lens_1" class="side_lens"
+                     src="camera_pro/static/img/lens/Cannon_lens_1.png" draggable="true" ondragstart="drag(event)">
+                     <div id="canon_mask1" style="color: black;font-size: 18px"><p style="margin-left: 0px; margin-top: 0px">EF 16-35mm</p></div>	               
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+				<img id="Cannon_lens_2" class="side_lens"
+                     src="camera_pro/static/img/lens/Cannon_lens_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+				<img id="Cannon_lens_3" class="side_lens"
+                     src="camera_pro/static/img/lens/Cannon_lens_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+				<img id="Cannon_lens_4" class="side_lens"
+                     src="camera_pro/static/img/lens/Cannon_lens_4.png" draggable="true" ondragstart="drag(event)">
+            </div>
+           <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Cannon_lens_5" class="side_lens"
+                     src="camera_pro/static/img/lens/Cannon_lens_5.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- 尼康镜头 -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_lens_1" class="side_lens"
+                     src="camera_pro/static/img/lens/Nikon_lens_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_lens_2" class="side_lens"
+                     src="camera_pro/static/img/lens/Nikon_lens_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_lens_3" class="side_lens"
+                     src="camera_pro/static/img/lens/Nikon_lens_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_lens_4" class="side_lens"
+                     src="camera_pro/static/img/lens/Nikon_lens_4.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_lens_5" class="side_lens"
+                     src="camera_pro/static/img/lens/Nikon_lens_5.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_lens_6" class="side_lens"
+                     src="camera_pro/static/img/lens/Nikon_lens_6.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- 宾得镜头 -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_lens_1" class="side_lens"
+                     src="camera_pro/static/img/lens/Pentax_lens_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_lens_2" class="side_lens"
+                     src="camera_pro/static/img/lens/Pentax_lens_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_lens_3" class="side_lens"
+                     src="camera_pro/static/img/lens/Pentax_lens_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- 徕卡镜头 -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Leica_lens_1" class="side_lens"
+                     src="camera_pro/static/img/lens/Leica_lens_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Leica_lens_2" class="side_lens"
+                     src="camera_pro/static/img/lens/Leica_lens_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Leica_lens_3" class="side_lens"
+                     src="camera_pro/static/img/lens/Leica_lens_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Leica_lens_4" class="side_lens"
+                     src="camera_pro/static/img/lens/Leica_lens_4.png" draggable="true" ondragstart="drag(event)">
+            </div>
+        </div>
+
+        <!-- 竖形分割线 --->
+        <div class="col-xs-1" style="width:1%;padding:0px;margin:0px;"><img src="camera_pro/static/img/fenge.png"></div>
+
+        <!-- 中间相机拼接面板 --->
+        <div class="col-xs-1" style="width: 48%;padding-top: 20px">
+            <div class="panel center_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+            </div>
+            <center><img class="intro_btn" src="camera_pro/static/img/btn.png" onclick="intro();_popup()"></center>
+            <p id="info" class="info"></p>
+        </div>
+
+        <!-- 竖形分割线 --->
+        <div class="col-xs-1" style="width:1%;padding:0px;margin:0px;"><img src="camera_pro/static/img/fenge.png"></div>
+
+        <!-- 右侧机身列表 --->
+        <div id="right_list" class="col-xs-1 side_list">
+        	<!-- 佳能机身 -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Cannon_dc_1" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Cannon_dc_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+           <!--  <p style="text-align: center;color:white">机身1</p> -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+ 				<img id="Cannon_dc_2" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Cannon_dc_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- <p style="text-align: center;color:white">机身2</p> -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+				<img id="Cannon_dc_3" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Cannon_dc_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- <p style="text-align: center;color:white">机身3</p> -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+				<img id="Cannon_dc_4" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Cannon_dc_4.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- <p style="text-align: center;color:white">机身4</p> -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Cannon_dc_5" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Cannon_dc_5.png" draggable="true" ondragstart="drag(event)">
+            </div>         
+            <!-- 尼康机身 -->
+			<div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_dc_1" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Nikon_dc_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_dc_2" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Nikon_dc_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+			<div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_dc_3" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Nikon_dc_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Nikon_dc_4" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Nikon_dc_4.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- 宾得机身 -->
+			<div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_dc_1" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Pentax_dc_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_dc_2" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Pentax_dc_2.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_dc_3" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Pentax_dc_3.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Pentax_dc_4" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Pentax_dc_4.png" draggable="true" ondragstart="drag(event)">
+            </div>
+            <!-- 徕卡机身 -->
+            <div class="panel side_panel" ondrop="drop(event)" ondragover="allowDrag(event)">
+                <img id="Leica_dc_1" class="side_cam_body"
+                     src="camera_pro/static/img/dc_body/Leica_dc_1.png" draggable="true" ondragstart="drag(event)">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- poppup弹出层 --->
+<div id="dialog-box">
+    <div class="dialog-content">
+        <div id="dialog-message" class="cd-nav">
+            <a href="#" onclick="close_popup()"><img src="camera_pro/static/img/close.png" style="width: 30px;height: 30px;margin-top: 20px;margin-right:20px;float: right;"></a>
+            <div class="cd-navigation-wrapper" style="padding-top: 0px">
+                <div class="cd-half-block">
+
+                    <nav>
+                        <ul class="cd-primary-nav" style="margin-top: 80px;">
+                            <li><a href="#" onclick="close_popup()" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei';">工作台</a>
+                            	<span style="font-size: 4.4rem;color: white;"> / </span>
+                            	<a href="#" onclick="close_popup()" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORKBENCH</a></li>
+
+                            <li><a href="intro_cam/index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">数码相机</a>
+                            	<span style="font-size: 4.4rem;color: white;"> / </span>
+                            	<a href="intro_cam/index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">DIGITAL CAMERA</a></li>
+
+                            <li><a href="intro_film/index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">胶片机</a>
+                            	<span style="font-size: 4.4rem;color: white;"> / </span>
+                            	<a href="intro_film/index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">GRAIN CAMERA</a></li>
+
+                            <li><a href="lens_earth/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">世界画廊</a>
+                            	<span style="font-size: 4.4rem;color: white;"> / </span>
+                            	<a href="lens_earth/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORLD GALARY</a></li>
+
+                            <li><a href="about us/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">联系我们</a>
+                            	<span style="font-size: 4.4rem;color: white;"> / </span>
+                            	<a href="about us/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">ABOUT AS</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="cd-half-block">
+                		<img src="camera_pro/static/img/导航.jpg" style="width:70%;margin-top: 40px;float: right;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 参数弹出层 -->
+<div id="detail_box">
+	<img style="float: right;width:25px;height:25px;cursor: pointer;margin-top: 20px;margin-right: 20px;" src="camera_pro/static/img/close.png"  onclick="_close()">
+	<img class="pic" src="">
+	<h3 class="title"></h3>
+	<p class='text'></p>  
+</div>
+
+
+
+
+
+
+
+<audio id="stitchingAudio" src="camera_pro/static/sounds/kaca1.m4a"></audio>
+
+<script src="camera_pro/static/js/jquery-3.2.1.min.js"></script>
+<script src="camera_pro/static/third/bootstrap3/js/bootstrap.min.js"></script>
+<!-- <script src="camera_pro/static/js/btn.js"></script> --><!-- 按钮变化 -->
+
+<!-- 实现两种工作台的切换 -->
+<!-- 问题所在：这个切换是按数组顺序来的，当第一个数组元素出问题时，后续元素都无法更换 -->
+<script type="text/javascript">
+
+	//单反切换为胶片机
+	function reset_1(){
+    	if($(".center_panel").find("img").length > 0){
+    		alert("请先将相机复原！");
+    	}
+    	else{
+    	var arr_1=new Array();
+		//替换左侧图片
+		$('#left_list').children('.side_panel').css('display', 'none');
+		$('#left_list').children('.side_panel').each(function() {
+			var idn=$(this).children('img').attr('id');
+			arr_1.push(idn);
+		});
+
+		// 6个胶片机
+		var path1="camera_pro/static/img/fc_body/";
+		var fc=["fc1.png","fc2.png","fc3.png","fc4.png","fc5.png","fc6.png"];
+		for(var i=0;i<=5;i++){
+			document.getElementById(arr_1[i]).parentNode.style.display='block';
+			document.getElementById(arr_1[i]).src=path1+fc[i];
+            document.getElementById(arr_1[i]).classList.remove('side_lens');
+            document.getElementById(arr_1[i]).classList.add('side_film_body');
+			document.getElementById(arr_1[i]).id="fc"+(i+1);
+		}
+        // console.log($('[id="fc1"]').attr('src'));
+
+		//替换右侧图片
+		var arr_2=new Array();
+		$('#right_list').children('.side_panel').css('display', 'none');
+		$('#right_list').children('.side_panel').each(function() {
+			var idn=$(this).children('img').attr('id');
+			arr_2.push(idn);
+		});
+		// 8种胶卷
+		var path2="camera_pro/static/img/film/";
+		var film=["film1.png","film2.png","film3.png","film4.png","film5.png","film6.png","film7.png","film8.png"];
+		for(var i=0;i<=7;i++){
+			document.getElementById(arr_2[i]).parentNode.style.display='block';
+			document.getElementById(arr_2[i]).src=path2+film[i];
+            document.getElementById(arr_2[i]).classList.remove('side_cam_body');
+            document.getElementById(arr_2[i]).classList.add('side_film');
+			document.getElementById(arr_2[i]).id="film"+(i+1);
+			// console.log($('#arr_1[i]'));
+		}
+
+    	}
+		
+	}
+
+	//胶片机切换为单反
+	function reset_2() {
+    	if($(".center_panel").find("img").length > 0){
+            alert("请先将相机复原！");
+        }
+    	else{
+    	var arr_3=new Array();
+		$('#left_list').children('.side_panel').css('display', 'none');
+		$('#left_list').children('.side_panel').each(function() {
+			var idn=$(this).children('img').attr('id');
+			arr_3.push(idn);
+		});
+		var path3="camera_pro/static/img/lens/";
+		//注意数组顺序与实际页面排列顺序的一致
+		var lens=["Cannon_lens_1.png","Cannon_lens_2.png","Cannon_lens_3.png","Cannon_lens_4.png","Cannon_lens_5.png","Nikon_lens_1.png","Nikon_lens_2.png","Nikon_lens_3.png","Nikon_lens_4.png","Nikon_lens_5.png","Nikon_lens_6.png","Pentax_lens_1.png","Pentax_lens_2.png","Pentax_lens_3.png","Leica_lens_1.png","Leica_lens_2.png","Leica_lens_3.png","Leica_lens_4.png"];
+		for(var i=0;i<=17;i++){
+			document.getElementById(arr_3[i]).parentNode.style.display='block';
+			document.getElementById(arr_3[i]).src=path3+lens[i];
+            document.getElementById(arr_3[i]).classList.remove('side_film_body');
+            document.getElementById(arr_3[i]).classList.add('side_lens');
+			if(i>=0&&i<=4){
+				document.getElementById(arr_3[i]).id="Cannon_lens_"+(i+1);
+			}
+			else if(i==5)
+				document.getElementById(arr_3[i]).id="Nikon_lens_"+(i-4);
+			// console.log($('#arr_1[i]'));
+		}
+
+		var arr_4=new Array();
+		$('#right_list').children('.side_panel').css('display', 'none');
+		$('#right_list').children('.side_panel').each(function() {
+			var idn=$(this).children('img').attr('id');
+			arr_4.push(idn);
+		});
+		// 8个胶片机变为单反机身
+		var path4="camera_pro/static/img/dc_body/";
+		var dc=["Cannon_dc_1.png","Cannon_dc_2.png","Cannon_dc_3.png","Cannon_dc_4.png","Cannon_dc_5.png","Nikon_dc_1.png","Nikon_dc_2.png","Nikon_dc_3.png","Nikon_dc_4.png","Pentax_dc_1.png","Pentax_dc_2.png","Pentax_dc_3.png","Pentax_dc_4.png","Leica_dc_1.png"];
+		for(var i=0;i<=13;i++){
+			document.getElementById(arr_4[i]).parentNode.style.display='block';
+			document.getElementById(arr_4[i]).src=path4+dc[i];
+            document.getElementById(arr_4[i]).classList.remove('side_film');
+            document.getElementById(arr_4[i]).classList.add('side_cam_body');
+			if(i>=0&&i<=4){
+				document.getElementById(arr_4[i]).id="Cannon_dc_"+(i+1);
+			}
+			else if(i>=5&&i<=7)
+				document.getElementById(arr_4[i]).id="Nikon_dc_"+(i-4);
+		}
+    	}		
+	}
+	
+	
+</script>
+
+
+<!-- 用js实现遮罩 -->
+
+
+
+
+
+
+<script>
+    //允许拖拽
+    function allowDrag(ev) {
+        ev.preventDefault();
+    }
+
+    //点击拖拽
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    //拖拽结束
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        var et = ev.target;
+
+        if (!$(et).attr("src")) {  //判断是否有src属性，区别是否为图片
+            var cc = document.getElementById(data);
+            //字符串
+            var str_lens=["Cannon_lens","Nikon_lens","Pentax_lens","Leica_lens"]
+            var str_dc=["Cannon_dc","Nikon_dc","Pentax_dc","Leica_dc"]
+            //更改图片样式
+            if ($(et).hasClass("center_panel")) {  
+            	//拖拽到中部面板
+                if ($(cc).hasClass("side_lens")) {
+                    $(cc).removeClass("side_lens").addClass("center_lens");
+                } else if ($(cc).hasClass("side_cam_body")) {
+                    $(cc).removeClass("side_cam_body").addClass("center_cam_body");
+                }else if($(cc).hasClass("side_film_body")){
+                    $(cc).removeClass("side_film_body").addClass("center_film_body");
+                }else if($(cc).hasClass("side_film")){
+                    $(cc).removeClass("side_film").addClass("center_film");
+                }
+                //判定拖入中部面板中的器材的厂商,实现非同厂商器材不可搭配
+                var name=$(cc).attr("id");    ;           
+                var i=0;        
+                for(i=0;i<=3;i++){
+                	if(name.indexOf(str_lens[i])===0){  //如果拖动的是A镜头，那么右边栏非A机身不可拖动                   		
+                		if($(cc).hasClass('center_lens')){  
+                			   $("img[class='side_cam_body']").each(function(){   //对侧边栏中非A厂商的机身进行处理
+                			   	var _id=$(this).attr("id");
+                			   	if(_id.indexOf(str_dc[i])==-1)
+                			   		$(this).attr({
+                			   			draggable: 'false',
+                			   			style: 'opacity:0.4'
+                			   		});
+                			   })
+                			// console.log( $("img[class='side_cam_body']","img[id^='"+ str_dc[i] +"']") );              			        
+                		    break;           			
+                		}                	               	  
+               		}
+               		else if(name.indexOf(str_dc[i])===0){
+                		if($(cc).hasClass('center_cam_body')){
+                			$("img[class='side_lens']").each(function(){
+                				var _id=$(this).attr("id");
+                			   	if(_id.indexOf(str_lens[i])==-1)
+                			   		$(this).attr({
+                			   			draggable: 'false',
+                			   			style: 'opacity:0.4'
+                			   		});
+                				})
+            				break;
+                		}
+                	}
+               	}                              
+                //判定中部面板是否已有图片
+            	if ($(".center_panel").find("img").length > 0)  
+                    $("#stitchingAudio")[0].play();
+            	//向目标面板添加拖拽元素
+            	ev.target.appendChild(document.getElementById(data));
+
+            } 
+
+            else if ($(et).hasClass("side_panel")) {  //拖拽到两边面板
+                if ($(cc).hasClass("center_lens")) {
+                    $(cc).removeClass("center_lens").addClass("side_lens");      
+                } else if ($(cc).hasClass("center_cam_body")) {
+                    $(cc).removeClass("center_cam_body").addClass("side_cam_body");
+                } else if ($(cc).hasClass("center_film_body")) {
+                    $(cc).removeClass("center_film_body").addClass("side_film_body");
+                } else if ($(cc).hasClass("center_film")) {
+                    $(cc).removeClass("center_film").addClass("side_film");
+                }
+
+            	//向目标面板添加拖拽元素
+            	ev.target.appendChild(document.getElementById(data));
+
+                //再进行一次判定，判定中间面板中放置的器材，设置可drag的对象               
+                if ($(".center_panel").find("img").length > 0){
+                	var m=0;
+                	var _name=$("[class='center_cam_body'],[class='center_lens']").attr("id");
+                	// console.log(_name);
+                    if(typeof(_name)!="undefined"){    //去除胶片机、胶卷
+                    for(m=0;m<=3;m++){
+                        if(_name.indexOf(str_lens[m])===0){
+                            $("img[class='side_cam_body']").each(function(){
+                                var _id=$(this).attr("id");
+                                if(_id.indexOf(str_dc[m])==-1)
+                                    $(this).attr({
+                                        draggable: 'false',
+                                        style: 'opacity:0.4'
+                                    });
+                            });
+                        }
+                        else if (_name.indexOf(str_dc[m])===0) {
+                            $("img[class='side_lens']").each(function(){
+                                var _id=$(this).attr("id");
+                                if(_id.indexOf(str_lens[m])==-1)
+                                    $(this).attr({
+                                        draggable: 'false',
+                                        style: 'opacity:0.4'
+                                    });
+                            });
+                        }
+                    } 
+                    } 
+                	              	               	
+                }               	
+                else{
+                	$('[class="side_lens"],[class="side_cam_body"]').attr({
+                		draggable: 'true',
+                		style: 'opacity:1'
+                	});
+                }                                
+            }           
+        }
+    }
+
+    //显示搭配组件的型号 (笨办法——效率低且需要对数组中各厂商、型号的位置放置很了解)
+    function intro(){
+    	//定义中间面板中两个配件的字符串变量
+    	var dc=$("img[class='center_cam_body']").attr('id');
+    	var lens=$("img[class='center_lens']").attr('id');
+    	//定义数组，放置各厂家
+    	var brand=['Cannon','Nikon','Pentax',"Leica"];
+    	//定义数组，放置各厂家型号
+    	var dc_cannon=['Cannon_dc_1','Cannon_dc_2','Cannon_dc_3','Cannon_dc_4','Cannon_dc_5'];
+    	var dc_nikon=['Nikon_dc_1','Nikon_dc_2','Nikon_dc_3','Nikon_dc_4'];
+    	var dc_pentax=['Pentax_dc_1','Pentax_dc_2','Pentax_dc_3','Pentax_dc_4'];
+    	var dc_leica=['Leica_dc_1'];
+    	var lens_cannon=['Cannon_lens_1','Cannon_lens_2','Cannon_lens_3','Cannon_lens_4','Cannon_lens_5'];
+    	var lens_nikon=['Nikon_lens_1','Nikon_lens_2','Nikon_lens_3','Nikon_lens_4','Nikon_lens_5','Nikon_lens_6'];
+    	var lens_pentax=['Pentax_lens_1','Pentax_lens_2','Pentax_lens_3'];
+    	var lens_leica=['Leica_lens_1','Leica_lens_2','Leica_lens_3','Leica_lens_4'];
+
+    	//判定两个配件是否同时在中间面板
+    	if(dc&&lens){
+    		var i=0;
+    		//判定厂商
+    		for(i=0;i<=3;i++){
+    			if(dc.indexOf(brand[i])===0)     //可以确认中间面板内为同厂家配件，因此只需验证机身厂商
+    				break;    			     				
+    		}
+            //填入单反型号搭配
+    		switch(i){
+    			case 0: 
+    			clear(); //先清除info中的内容
+    			for(var m=0;m<=4;m++){  //判断佳能机身
+    				if(dc===dc_cannon[m])
+    					break;
+    			 }
+    			switch(m){
+    			 	case 0:$("#info").append('Cannon&nbsp;1DX&nbsp;Mark&nbsp;II&nbsp;+&nbsp;');break;
+    			 	case 1:$("#info").append('Cannon&nbsp;5D4&nbsp;+&nbsp;');break;
+    			 	case 2:$("#info").append('Cannon&nbsp;6D2&nbsp;+&nbsp;');break;
+    			 	case 3:$("#info").append('Cannon&nbsp;80D&nbsp;+&nbsp;');break;
+    			 	case 4:$("#info").append('Cannon&nbsp;800D&nbsp;+&nbsp;');break;
+    			
+    			}
+    			for(var n=0;n<=4;n++){  //判断佳能镜头
+    				if(lens===lens_cannon[n])
+    					break;
+    			 }
+    			switch(n){
+    			 	case 0: $("#info").append('EF&nbsp;16-35mm&nbsp;f/2.8L&nbsp;III&nbsp;USM');break;
+    			 	case 1: $("#info").append('TS-E&nbsp;17mm&nbsp;f/4L');break;
+    			 	case 2: $("#info").append('EF&nbsp;70-200mm&nbsp;f/2.8L&nbsp;IS&nbsp;III&nbsp;USM');break;
+    			 	case 3: $("#info").append('EF&nbsp;24mm&nbsp;f/1.4L&nbsp;II&nbsp;USM');break;
+    			 	case 4: $("#info").append('EF&nbsp;400mm&nbsp;f/2.8L&nbsp;IS&nbsp;II&nbsp;USM');break;
+    			}
+
+    			detail(i,m,n);//传递三个参数，以确定所选中的厂商(i)及其两个配件(m,n)
+
+    			break;
+    			
+
+
+
+    			case 1: 
+    			clear();
+    			for(var m=0;m<=3;m++){  //判断尼康机身
+    				if(dc===dc_nikon[m])
+    					break;
+    			 }
+    			 switch(m){
+    			 	case 0: $("#info").append('Nikon&nbsp;D610&nbsp;+&nbsp;');break;
+    			 	case 1: $("#info").append('Nikon&nbsp;D810&nbsp;+&nbsp;');break;
+    			 	case 2: $("#info").append('Nikon&nbsp;D7200&nbsp;+&nbsp;');break;
+    			 	case 3: $("#info").append('Nikon&nbsp;D7500&nbsp;+&nbsp;');break;
+    			
+    			 }
+    			 for(var n=0;n<=5;n++){  //判断尼康镜头
+    				if(lens===lens_nikon[n])
+    					break;
+    			 }
+    			 switch(n){
+    			 	case 0: $("#info").append('AF-P&nbsp;70-300mm&nbsp;f/4.5-5.6E&nbsp;ED&nbsp;VR');break;
+    			 	case 1: $("#info").append('AF-P&nbsp;DX&nbsp;10-20mm');break;
+    			 	case 2: $("#info").append('AF-S&nbsp;50mm&nbsp;f/1.4G');break;
+    			 	case 3: $("#info").append('PC-E&nbsp;微距&nbsp;85mm&nbsp;f/2.8D&nbsp;移轴镜头');break;
+    			 	case 4: $("#info").append('大三元&nbsp;AF-S&nbsp;14-24mm副本');break;
+    			 	case 5: $("#info").append('尼克尔&nbsp;z35mm&nbsp;f/1.8S');break;
+    			
+    			 }
+    			
+    			detail(i,m,n);
+    			break;
+    			
+
+
+
+    			case 2:
+    			clear();
+    			for(var m=0;m<=3;m++){  //判断宾得机身
+    				if(dc===dc_pentax[m])
+    					break;
+    			 }
+    			 switch(m){
+    			 	case 0: $("#info").append('Pentax&nbsp;K1&nbsp;+&nbsp;');break;
+    			 	case 1: $("#info").append('Pentax&nbsp;K50&nbsp;+&nbsp;');break;
+    			 	case 2: $("#info").append('Pentax&nbsp;KP&nbsp;+&nbsp;');break;
+    			 	case 3: $("#info").append('Pentax&nbsp;645Z&nbsp;+&nbsp;');break;
+    			
+    			 }
+    			 for(var n=0;n<=2;n++){  //判断宾得镜头
+    				if(lens===lens_pentax[n])
+    					break;
+    			 }
+    			 switch(n){
+    			 	case 0: $("#info").append('HD&nbsp;DA&nbsp;55-300mm&nbsp;PLM&nbsp;WR');break;
+    			 	case 1: $("#info").append('HD&nbsp;DFA&nbsp;70~200mm&nbsp;F2.8&nbsp;ED&nbsp;DC&nbsp;AW');break;
+    			 	case 2: $("#info").append('DA&nbsp;HD21mm&nbsp;F/3.2&nbsp;DA&nbsp;21');break;
+    			
+    			 }
+    			detail(i,m,n);
+    			break;
+    			
+
+    			case 3:
+    			clear();
+    			for(var m=0;m<=0;m++){  //判断徕卡机身
+    				if(dc===dc_leica[m])
+    					break;
+    			 }
+    			 switch(m){
+    			 	case 0: $("#info").append('Leica&nbsp;S2&nbsp;+&nbsp;');break;
+    			
+    			 }
+    			 for(var n=0;n<=3;n++){  //判断徕卡镜头
+    				if(lens===lens_leica[n])
+    					break;
+    			 }
+    			 switch(n){
+    			 	case 0: $("#info").append('Leica&nbsp;S&nbsp;变焦');break;
+    			 	case 1: $("#info").append('Leica&nbsp;超高速肖像镜头');break;
+    			 	case 2: $("#info").append('Leica&nbsp;转轴镜头');break;
+    			 	case 3: $("#info").append('Leica35&nbsp;2.5&nbsp;S广角镜头');break;
+    			
+    			 }
+    			detail(i,m,n);
+    			break;
+
+    		}
+        }
+    	
+        //填入胶片机型号搭配
+            
+        var fc=$("img[class='center_film_body']").attr('id');
+        var film=$("img[class='center_film']").attr('id');//即胶卷
+
+        if(fc&&film){
+            switch(fc){
+                case 'fc1':
+                    clear();
+                    $("#info").append('FISHEYE&nbsp;+&nbsp;');
+                break;
+
+                case 'fc2':
+                    clear();
+                    $("#info").append('Kodak FunSaver&nbsp;+&nbsp;');
+                break;
+
+                case 'fc3':
+                    clear();
+                    $("#info").append('Lomography simple use&nbsp;+&nbsp;');
+                break;
+
+                case 'fc4':
+                    clear();
+                    $("#info").append('M-A typ 127&nbsp;+&nbsp;');
+                break;
+
+                case 'fc5':
+                    clear();
+                    $("#info").append('戴爱娜&nbsp;+&nbsp;');
+                break;
+
+                case 'fc6':
+                    clear();
+                    $("#info").append('长城135 HM155&nbsp;+&nbsp;');
+                break;
+            } 
+            
+            var fl_body=fc;   //传递参数
+
+            switch(film){
+                case 'film1':
+                    $("#info").append('Fujicolor 100负片');
+                    film_detail(fl_body,film);           
+                break;
+
+                case 'film2':  
+                    $("#info").append('fujicolor 200 负片');
+                    film_detail(fl_body,film);            
+                break;
+
+                case 'film3':
+                    $("#info").append('Fujicolor 400 负片');
+                    film_detail(fl_body,film);            
+                break;
+                        
+                case 'film4':
+                    $("#info").append('FUJI电影卷 ETERNA 8553');
+                    film_detail(fl_body,film);            
+                break;
+                        
+                case 'film5':
+                    $("#info").append('ILFORD polypan F');
+                    film_detail(fl_body,film);            
+                break;
+                        
+                case 'film6':
+                    $("#info").append('Kodak 200 负片');
+                    film_detail(fl_body,film);            
+                break;
+                        
+                case 'film7':
+                    $("#info").append('Kodak Vison3 250D');
+                    film_detail(fl_body,film);            
+                break;
+                        
+                case 'film8':
+                    $("#info").append('Kodak 电影卷 5207_250D');
+                    film_detail(fl_body,film);            
+                break;
+                        
+            } 
+        }
+
+    				     		
+    	
+    }
+
+    //分配所搭配单反相机的参数
+    function detail(i,m,n){
+    	switch(i){
+            //佳能
+    		case 0:
+    		 	switch(m){
+    		 		case 0:
+    		 			switch(n){
+    		 				case 0:
+    		 					$(".title").text('Canon 1DX Mark II + EF 16-35mm f/2.8L III USM');
+    		 					$(".text").text('适合用来拍：微距景物、近景静物、人像特写、精致细节');
+    		 					$(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/4.jpeg', 
+                                    style:'width:50%'
+                                });
+
+
+    		 				break;
+
+    		 				case 1:
+                                $(".title").text('Canon 1DX Mark II + TS-E 17mm f/4L');
+                                $(".text").text('适合用来拍：高大建筑群、建筑摄影（近景、城市人文摄影、广告摄影（可校正透视的问题)');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/4.jpeg', 
+                                    style:'width:25%'
+                                });
+    		 				break;
+
+    		 				case 2:
+                                $(".title").text('Canon 1DX Mark II + EF 70-200mm f/2.8L IS III USM');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/12.jpeg', 
+                                    style:'width:50%'
+                                });
+    		 				break;
+
+    		 				case 3:
+                                $(".title").text('Canon 1DX Mark II + CANON EF 24/1.4 L II USM');
+                                $(".text").text('适合用来拍：超广角镜头可用于拍摄近处的、广阔的自然景观');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/14.jpeg', 
+                                    style:'width:50%'
+                                });
+    		 				break;
+    		 				case 4:
+                                $(".title").text('Canon 1DX Mark II + EF 400mm f/2.8L IS II USM');
+                                $(".text").text('适合用来拍：适合用来捕捉鸟的动作');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/3.jpeg', 
+                                    style:'width:50%'
+                                });
+    		 				break;
+    		 				default: alert("出错了！");
+    		 			}
+    		 		break;
+
+    		 		case 1:
+    		 			switch(n){
+                            case 0:
+                                $(".title").text('Canon 5D MARK IV + EF 16-35mm f/2.8L III USM');
+                                $(".text").text('适合用来拍：微距景物、近景静物、人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/6.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+
+                            case 1:
+                                $(".title").text('Canon 5D MARK IV + TS-E 17mm f/4L');
+                                $(".text").text('适合用来拍：城市人文摄影、广告摄影（可校正透视的问题）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/14.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+                            case 2:
+                                $(".title").text('Canon 5D MARK IV + EF 70-200mm f/2.8L IS III USM');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/4.jpeg',
+                                    style:'width: 30%'
+                                });
+                            break;
+
+                            case 3:
+                                $(".title").text('Canon 5D MARK IV + Canon EF 24/1.4 L II USM');
+                                $(".text").text('适合用来拍：超广角镜头可用于拍摄近处的、广阔的自然景观');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/10.jpeg',
+                                    style:'width: 30%'
+                                });
+                            break;
+
+                            case 4:
+                                $(".title").text('Canon 5D MARK IV + EF 400mm f/2.8L IS II USM');
+                                $(".text").text('适合用来拍：距离较远的自然风光、人物全身照');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/6.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+                            default: alert("出错了！");
+                        }
+    		 		break;
+    		 		case 2:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Canon 6D + EF 16-35mm f/2.8L III USM');
+                                $(".text").text('适合用来拍：近处人像、色彩鲜艳的近处场景');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/3.jpeg',
+                                    style:'width: 30%'
+                                });
+                            break;
+                            case 1:
+                                $(".title").text('Canon 6D + TS-E 17mm f/4L');
+                                $(".text").text('适合用来拍：城市人文摄影、广告摄影（可校正透视的问题）');
+                                $(".pic").attr({
+                                    src: "camera_pro/static/img/示例图片/近景（30-70mm）/15.jpeg",
+                                    style: "width: 30%"
+                                });
+                            break;
+                            case 2:
+                                $(".title").text('Canon 6D + EF 70-200mm f/2.8L IS III USM');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/10.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Canon 6D + Canon EF 24/1.4 L II USM');
+                                $(".text").text('适合用来拍：超广角镜头可用于拍摄近处的、广阔的自然景观或人文景观');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/1.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+                            case 4:
+                                $(".title").text('Canon 6D + EF 400mm f/2.8L IS II USM');
+                                $(".text").text('适合用来拍：距离较远的自然风光、人物全身照');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/6.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+    		 		break;
+    		 		case 3:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Canon 80D + EF 16-35mm f/2.8L III USM');
+                                $(".text").text('适合用来拍：中端机型可拍摄近处人像，但其他景物色彩效果一般');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/13.jpeg',
+                                    style:'width: 30%'
+                                });
+                            break;
+
+                            case 1:
+                                $(".title").text('Canon 80D + TS-E 17mm f/4L');
+                                $(".text").text('适合用来拍：中端机型适合拍摄构造较为简单的城市人文景观');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/19.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+
+                            case 2:
+                                $(".title").text('Canon 80D + EF 70-200mm f/2.8L IS III USM');
+                                $(".text").text('适合用来拍：中端机型可用于拍摄光效较好的自然风光');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/10.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+
+                            break;
+                            case 3:
+                                $(".title").text('Canon 80D + Canon EF 24/1.4 L II USM');
+                                $(".text").text('适合用来拍：超广角镜头可用于拍摄近处的自然景观或人文景观');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/5.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 4:
+                                $(".title").text('Canon 80D + EF 400mm f/2.8L IS II USM');
+                                $(".text").text('适合用来拍：距离较远的自然风光、人物全身照（细节和层次体现相对较差）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/6.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+    		 		break;
+    		 		case 4:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Canon 800D + EF 16-35mm f/2.8L III USM');
+                                $(".text").text('适合用来拍：入门级单反可拍摄简单的近处人像和场景（光效一般）');
+                                $(".pic").attr('src', 'camera_pro/static/img/示例图片/微距/5.jpeg'); 
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/5.jpeg', 
+                                    style:'width:50%'
+                                });
+                            break;
+
+                            case 1:
+                                $(".title").text('Canon 800D + TS-E 17mm f/4L');
+                                $(".text").text('适合用来拍：入门级单反可拍摄建筑群（细节体现效果一般）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/15.jpeg',
+                                    style:'width: 30%'
+                                });
+                            break;
+
+                            case 2:
+                                $(".title").text('Canon 800D + EF 70-200mm f/2.8L IS III USM');
+                                $(".text").text('适合用来拍：入门级单反可在光线较好时拍摄自然风光或城市建筑');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/9.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Canon 800D + Canon EF 24/1.4 L II USM');
+                                $(".text").text('适合用来拍：入门级单反可用于拍摄近处的、广阔的自然景观或人文景物');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/3.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 4:
+                                $(".title").text('Canon 80D + EF 400mm f/2.8L IS II USM');
+                                $(".text").text('适合用来拍：光效合适时可拍摄距离较远的自然风光、人物全身照（细节和层次体现相对较差）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/5.jpeg',
+                                    style:'width:30%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+    		 		break;
+
+    		 		default: alert("出错了！");  	
+    		 	}									 
+    		break;  
+    		//尼康                         
+    		case 1:  
+                switch(m){
+                    case 0:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Nikon 610 + AF-P 70-300mm f/4.5~5.6E ED VR');
+                                $(".text").text('适合用来拍：室内场景（更自然、真实的光效）、低ISO适合于光影变化明显的场景');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/18.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Nikon 610 + AF-P DX 10-20mm');
+                                $(".text").text('适合用来拍：室内景物的特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/2.jpeg',
+                                    style:'width: 30%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Nikon 610 + AF-S 50mm f/1.4G');
+                                $(".text").text('适合用来拍：室内人像（更真实的颜色还原）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/2.jpeg',
+                                    style:'width:30%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Nikon 610 + PC-E 微距 85mm f/2.8D 移轴镜头');
+                                $(".text").text('适合用来拍：微距景物、近景静物、仰拍高大建筑群');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/3.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 4:
+                                $(".title").text('Nikon 610 + 大三元 AF-S 14-24mm.png');
+                                $(".text").text('适合用来拍：静物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/1.jpeg',
+                                    style:'width:30%'
+                                });
+
+                            break;
+                            case 5:
+                                $(".title").text('Nikon 610 + 尼克尔 z35mm f/1.8S');
+                                $(".text").text('适合用来拍：微距景物、近景静物、人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/5.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    case 1:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Nikon 810 + AF-P 70-300mm f/4.5~5.6E ED VR');
+                                $(".text").text('适合用来拍：室内场景（更自然、真实的光效）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/15.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Nikon 810 + AF-P DX 10-20mm');
+                                $(".text").text('适合用来拍：室内景物的特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/1.jpeg',
+                                    style:'width:30%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Nikon 810 + AF-S 50mm f/1.4G');
+                                $(".text").text('适合用来拍：室内人像（更真实的颜色还原）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/8.jpeg',
+                                    style:'width:25%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Nikon 810 + PC-E 微距 85mm f/2.8D 移轴镜头');
+                                $(".text").text('适合用来拍：微距景物、近景静物、仰拍高大建筑群');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/11.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 4:
+                                $(".title").text('Nikon 810 + 大三元 AF-S 14-24mm.png');
+                                $(".text").text('适合用来拍：静物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/7.jpeg',
+                                    style:'width:30%'
+                                });
+
+                            break;
+                            case 5:
+                                $(".title").text('Nikon 810 + 尼克尔 z35mm f/1.8S');
+                                $(".text").text('适合用来拍：微距景物、近景静物、人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/6.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    case 2:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Nikon 7200 + AF-P 70-300mm f/4.5~5.6E ED VR');
+                                $(".text").text('适合用来拍：精准捕捉远处的动物');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/4.jpeg',
+                                    style:"width:30%"
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Nikon 7200 + AF-P DX 10-20mm');
+                                $(".text").text('适合用来拍：微距景物、近景静物、人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/5.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Nikon 7200 + AF-S 50mm f/1.4G');
+                                $(".text").text('适合用来拍：人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/17.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Nikon 7200 + PC-E 微距 85mm f/2.8D 移轴镜头');
+                                $(".text").text('适合用来拍：细节表现近景静物');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/1.jpeg',
+                                    style:'width:30%'
+                                });
+
+                            break;
+                            case 4:
+                                $(".title").text('Nikon 7200 + 大三元 AF-S 14-24mm.png');
+                                $(".text").text('适合用来拍：表现近景的层次感与色彩');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/4.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 5:
+                                $(".title").text('Nikon 7200 + 尼克尔 z35mm f/1.8S');
+                                $(".text").text('适合用来拍：表现近景的层次感与色彩');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/3.jpeg',
+                                    style:'width:30%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    case 3:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Nikon 7500 + AF-P 70-300mm f/4.5~5.6E ED VR');
+                                $(".text").text('适合用来拍：专业单反可精准捕捉远处的运动物体');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/1.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Nikon 7500 + AF-P DX 10-20mm');
+                                $(".text").text('适合用来拍：微距景物、近景静物、人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/4.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Nikon 7500 + AF-S 50mm f/1.4G');
+                                $(".text").text('适合用来拍：极致细节的人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/11.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Nikon 7500 + PC-E 微距 85mm f/2.8D 移轴镜头');
+                                $(".text").text('适合用来拍：细节表现近景静物');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/12.jpeg',
+                                    style:"width:30%"
+                                });
+
+                            break;
+                            case 4:
+                                $(".title").text('Nikon 7500 + 大三元 AF-S 14-24mm.png');
+                                $(".text").text('适合用来拍：表现近景的层次感与色彩');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/20.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 5:
+                                $(".title").text('Nikon 7500 + 尼克尔 z35mm f/1.8S');
+                                $(".text").text('适合用来拍：微距景物、近景静物、人物特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/5.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    default: alert("出错了！！！");
+                }                              
+    		break; 
+            //宾得
+    		case 2:
+                switch(m){
+                    case 0:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Pentax K1 + HD DA 55-300mm PLM WR');
+                                $(".text").text('适合用来拍：景别适用范围很大（从近景到超远景）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/11.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Pentax K1 + HD DFA 70~200mm F2.8 ED DC AW');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/2.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Pentax K1 + DA HD21mm F/3.2/DA 21');
+                                $(".text").text('适合用来拍：仅能用于近景的特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/微距/2.jpeg',
+                                    style:'30%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    case 1:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Pentax K50 + HD DA 55-300mm PLM WR');
+                                $(".text").text('适合用来拍：景别适用范围很大（从近景到超远景）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/5.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Pentax K50 + HD DFA 70~200mm F2.8 ED DC AW');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/10.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Pentax K50 + DA HD21mm F/3.2/DA 21');
+                                $(".text").text('适合用来拍：仅能用于近景的特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/23.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    case 2:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Pentax KP + HD DA 55-300mm PLM WR');
+                                $(".text").text('适合用来拍：景别适用范围很大（从近景到超远景）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/5.jpeg',
+                                    style:'width:30%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Pentax KP + HD DFA 70~200mm F2.8 ED DC AW');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/1.jpeg',
+                                    style:'width:30%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Pentax KP + DA HD21mm F/3.2/DA 21');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/22.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }
+                    break;
+                    case 3:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Pentax 645Z + HD DA 55-300mm PLM WR');
+                                $(".text").text('适合用来拍：景别适用范围很大（从近景到超远景）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/超长焦(200-600mm)/6.jpeg', 
+                                    style:'width:50%'
+                                });
+                                
+                            break;
+                            case 1:
+                                $(".title").text('Pentax 645Z + HD DFA 70~200mm F2.8 ED DC AW');
+                                $(".text").text('适合用来拍：自然风光、山水');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm))/8.jpeg',
+                                    style:'width:30%'
+                                });
+                                
+                            break;
+                            case 2:
+                                $(".title").text('Pentax K645Z + DA HD21mm F/3.2/DA 21');
+                                $(".text").text('适合用来拍：仅能用于近景的特写');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/16.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            default: alert("出错了！");
+                        }  
+                    break;
+                    default: alert("出错了！！！");
+                }                                          
+    		break; 
+            //徕卡
+    		case 3:
+                switch(m){
+                    case 0:
+                        switch(n){
+                            case 0:
+                                $(".title").text('Leica S2 + Leica S 变焦');
+                                $(".text").text('适合用来拍：开阔的自然景色（近景）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/14.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 1:
+                                $(".title").text('Leica S2 + Leica 超高速肖像镜头');
+                                $(".text").text('适合用来拍：运动人物、动物');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/21.png', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 2:
+                                $(".title").text('Leica S2 + Leica 转轴镜头');
+                                $(".text").text('适合用来拍：转轴镜头可用于表现高大建筑物的细节与层次感');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/风景(100-300mm)/11.jpeg', 
+                                    style:'width:50%'
+                                });
+
+                            break;
+                            case 3:
+                                $(".title").text('Leica S2 + Leica35 2.5 S广角镜头');
+                                $(".text").text('适合用来拍：可用于家庭旅游（人像、自然风光均可）');
+                                $(".pic").attr({
+                                    src:'camera_pro/static/img/示例图片/近景（30-70mm）/9.jpeg',
+                                    style:'width:30%'
+                                });
+                            
+                            break;
+                            default: alert("出错了！！！");
+                        }
+                    break;
+                    default: alert("出错了！！！");
+                }                                   
+    		break; 
+
+    		default:  alert("出错了！");  	
+    	}
+    } 
+
+    //分配所搭配胶片相机的参数
+    function film_detail(fl_body,fl){
+    	$('.pic').css('width', '50%');
+    	switch(fl_body){
+    		case 'fc1':
+    			switch(fl){
+    				case 'film1':
+    					$(".title").text('Fisheye鱼眼胶片相机 + Fujicolor100 负片胶卷');
+    		 			$(".text").text('特点：可进行长时间曝光、双重曝光；但夜景拍摄光效偏暗；170°超广大视角');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy1.jpeg');
+    				break;
+
+    				case 'film2':
+    					$(".title").text('Fisheye鱼眼胶片相机 + Fujicolor200 负片胶卷');
+    		 			$(".text").text('特点：可进行夜景拍摄，感光度适中，需要配合使用闪光灯；170°超广大视角');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy8.jpeg');
+    				break;
+
+    				case 'film3':
+    					$(".title").text('Fisheye鱼眼胶片相机 + Fujicolor400 负片胶卷');
+    		 			$(".text").text('特点：夜景拍摄光效较好，但成像颗粒感很重；双重曝光成像噪点较多');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy4.jpeg');
+    				break;
+
+    				case 'film4':
+    					$(".title").text('Fisheye鱼眼胶片相机 + FUJI电影卷 ETERNA 8553');
+    		 			$(".text").text('特点：成像颜色自然，还原度高；170°超广大视角适合拍摄范围较广的场景；成像质量较好');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy5.jpeg');
+    				break;
+
+    				case 'film5':
+    					$(".title").text('Fisheye鱼眼胶片相机 + ILFORD polypan F胶卷');
+    		 			$(".text").text('特点：只能呈黑白像，感光度较低，对光效的要求较高，否则整个画面将非常暗淡');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy7.jpeg');
+    				break;
+
+    				case 'film6':
+    					$(".title").text('Fisheye鱼眼胶片相机 + Kodak200 负片胶卷');
+    		 			$(".text").text('特点：可进行夜景拍摄，感光度适中，需要配合使用闪光灯；可进行双重曝光');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy2.jpeg');
+    				break;
+
+    				case 'film7':
+    					$(".title").text('Fisheye鱼眼胶片相机 + Kodak Vison3 250D胶卷');
+    		 			$(".text").text('特点：感光度适中，成像细腻，颗粒小；色彩还原度较高');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy3.jpeg');
+    				break;
+
+    				case 'film8':
+    					$(".title").text('Fisheye鱼眼胶片相机 + Kodak 电影卷 5207/250D');
+    		 			$(".text").text('特点：色彩真实、鲜艳，成像质量较高；感光度适中，可以驾驭不同光效');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/fy6.jpeg');
+    				break;
+
+    				default:alert('出错了！!！');
+    			}
+    		break;
+
+    		case 'fc2':
+    			switch(fl){
+    				case 'film1':
+    					$(".title").text('Kodak FunSaver Single Use Camera + Fujicolor100 负片胶卷');
+    		 			$(".text").text('特点：机身小巧轻便，到手即拍；感光度较低，光线较暗的场景拍摄效果差');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/26.jpeg');
+    				break;
+
+    				case 'film2':
+    					$(".title").text('Kodak FunSaver Single Use Camera + Fujicolor200 负片胶卷');
+    		 			$(".text").text('特点：可结合手动闪光灯设置，光线容忍度高');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/8.jpeg');
+    				break;
+
+    				case 'film3':
+    					$(".title").text('Kodak FunSaver Single Use Camera + Fujicolor400 负片胶卷');
+    		 			$(".text").text('特点：可拍摄较暗场景，但拍摄效果一般，颗粒感较重');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/11.jpeg');
+    				break;
+
+    				case 'film4':
+    					$(".title").text('Kodak FunSaver Single Use Camera + FUJI电影卷 ETERNA 8553');
+    		 			$(".text").text('特点：色彩还原度高，但胶卷性能明显优于相机性能（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/1.jpeg');
+    				break;
+
+    				case 'film5':
+    					$(".title").text('Kodak FunSaver Single Use Camera + ILFORD polypan F胶卷');
+    		 			$(".text").text('特点：只能成黑白像，且成像效果一般，噪点较多');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/39.jpeg');
+    				break;
+
+    				case 'film6':
+    					$(".title").text('Kodak FunSaver Single Use Camera + Kodak200 负片胶卷');
+    		 			$(".text").text('特点：可进行夜景拍摄，色彩还原度一般，成像质量一般');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/18.jpeg');
+    				break;
+
+    				case 'film7':
+    					$(".title").text('Kodak FunSaver Single Use Camera + Kodak Vison3 250D胶卷');
+    		 			$(".text").text('特点：感光度适中，可以驾驭不同光线的场景');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/9.jpeg');
+    				break;
+
+    				case 'film8':
+    					$(".title").text('Kodak FunSaver Single Use Camera + Kodak 电影卷 5207/250D');
+    		 			$(".text").text('特点：成像清晰、细腻，色彩真实、自然；但胶卷性能明显高于相机（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/3.jpeg');
+    				break;
+
+    				default:alert('出错了！！！');
+    			}
+    		break;
+
+    		case 'fc3':
+    			switch(fl){
+    				case 'film1':
+    					$(".title").text('Lomography Simple Use + Fujicolor100 负片胶卷');
+    		 			$(".text").text('特点：Lomo风格，适合拍摄近处的静物，且仅适用于光线较好的场景');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/31.jpeg');
+    				break;
+
+    				case 'film2':
+    					$(".title").text('Lomography Simple Use + Fujicolor200 负片胶卷');
+    		 			$(".text").text('特点：成像有暗角，光线较好时可更换三种不同颜色的滤片，呈现不同的颜色效果');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/19.jpeg');
+    				break;
+
+    				case 'film3':
+    					$(".title").text('Lomography Simple Use + Fujicolor400 负片胶卷');
+    		 			$(".text").text('特点：Lomo风格，可用于较暗场景的拍摄，但图像颗粒感较重');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/28.jpeg');
+    				break;
+
+    				case 'film4':
+    					$(".title").text('Lomography Simple Use + FUJI电影卷 ETERNA 8553');
+    		 			$(".text").text('特点：成像有暗角，色彩还原度较高；但胶卷性能明显优于相机（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/21.jpeg');
+    				break;
+
+    				case 'film5':
+    					$(".title").text('Lomography Simple Use + ILFORD polypan F胶卷');
+    		 			$(".text").text('特点：只能成黑白像（三色滤片没有作用），图像有暗角，成像效果一般');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/25.jpeg');
+    				break;
+
+    				case 'film6':
+    					$(".title").text('Lomography Simple Use + Kodak200 负片胶卷');
+    		 			$(".text").text('特点：图像为复古风格，可用于拍摄光线较差的场景');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/35.jpeg');
+    				break;
+
+    				case 'film7':
+    					$(".title").text('Lomography Simple Use + Kodak Vison3 250D胶卷');
+    		 			$(".text").text('特点：色彩真实、自然、鲜艳，成像质量高；但胶卷性能明显优于相机（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/24.jpeg');
+    				break;
+
+    				case 'film8':
+    					$(".title").text('Lomography Simple Use + Kodak 电影卷 5207/250D');
+    		 			$(".text").text('特点：感光度适中，图像细腻，色彩效果好；但胶卷性能明显优于相机（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/30.jpeg');
+    				break;
+
+    				default:alert('出错了！！！');
+    			}
+    		break;
+
+    		case 'fc4':
+    			switch(fl){
+    				case 'film1':
+    					$(".title").text('Leica MP + Fujicolor100 负片胶卷');
+    		 			$(".text").text('特点：可手动设置快门速度和光圈，可用于拍摄各种光线的场景，成像细腻');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/34.jpeg');
+    				break;
+
+    				case 'film2':
+    					$(".title").text('Leica MP + Fujicolor200 负片胶卷');
+    		 			$(".text").text('特点：可自动测光、自动开启闪光灯，并支持长时间曝光（B门）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/12.jpeg');
+    				break;
+
+    				case 'film3':
+    					$(".title").text('Leica MP + Fujicolor400 负片胶卷');
+    		 			$(".text").text('特点：徕卡胶片机可调节快门速度与光圈，并配备闪光灯，适用于光线较暗场景的拍摄，无需选择ISO高达400且成像质量较差的胶卷（不建议这样搭配，可能会产生过曝的现象）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/5.jpeg');
+    				break;
+
+    				case 'film4':
+    					$(".title").text('Leica MP + FUJI电影卷 ETERNA 8553');
+    		 			$(".text").text('特点：可用于专业的胶片图像拍摄，色彩鲜艳、真实，可拍摄近景至远景（焦距最大值为135mm），快门速度灵活，对操作水平要求高');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/45.jpeg');
+    				break;
+
+    				case 'film5':
+    					$(".title").text('Leica MP + ILFORD polypan F胶卷');
+    		 			$(".text").text('特点：只能成黑白像，且成像效果一般；机身性能明显优于胶卷性能（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/40.jpeg');
+    				break;
+
+    				case 'film6':
+    					$(".title").text('Leica MP + Kodak200 负片胶卷');
+    		 			$(".text").text('特点：可用于拍摄近处至远景的静物或运动物体，自定义程度高，成像质量较好');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/37.jpeg');
+    				break;
+
+    				case 'film7':
+    					$(".title").text('Leica MP + Kodak Vison3 250D胶卷');
+    		 			$(".text").text('特点：色彩真实、自然、鲜艳，成像质量高；但不适合新手使用');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/41.jpeg');
+    				break;
+
+    				case 'film8':
+    					$(".title").text('Leica MP + Kodak 电影卷 5207/250D');
+    		 			$(".text").text('特点：相机与胶卷性能相当，是一个较为专业的搭配；');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/7.jpeg');
+    				break;
+
+    				default:alert('出错了！！！');
+    			}
+    		break;
+
+    		case 'fc5':
+    			switch(fl){
+    				case 'film1':
+    					$(".title").text('戴安娜F+ + Fujicolor100 负片胶卷');
+    		 			$(".text").text('特点：可结合手动闪光灯设置，光线容忍度高');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/33.jpeg');
+    				break;
+
+    				case 'film2':
+    					$(".title").text('戴安娜F+ + Fujicolor200 负片胶卷');
+    		 			$(".text").text('特点：闪光灯可更换颜色滤片，呈现不同效果');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/23.jpeg');
+    				break;
+
+    				case 'film3':
+    					$(".title").text('戴安娜F+ + Fujicolor400 负片胶卷');
+    		 			$(".text").text('特点：感光度过高会导致胶片颗粒感较重，不适合同时使用滤色闪光灯');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/20.jpeg');
+    				break;
+
+    				case 'film4':
+    					$(".title").text('戴安娜F+ + FUJI电影卷 ETERNA 8553');
+    		 			$(".text").text('特点：成像质量高，色彩真实、鲜艳');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/17.jpeg');
+    				break;
+
+    				case 'film5':
+    					$(".title").text('戴安娜F+ + ILFORD polypan F胶卷');
+    		 			$(".text").text('特点：只能呈黑白像，且效果一般，可配合闪光灯使用，但多色滤片无用');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/42.jpeg');
+    				break;
+
+    				case 'film6':
+    					$(".title").text('戴安娜F+ + Kodak200 负片胶卷');
+    		 			$(".text").text('特点：感光度适中，配合闪光灯使用可用于拍摄光线较暗的场景');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/32.jpeg');
+    				break;
+
+    				case 'film7':
+    					$(".title").text('戴安娜F+ + Kodak Vison3 250D胶卷');
+    		 			$(".text").text('特点：色彩还原度高，成像细腻、质量较高，可使用B门进行长时间曝光');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/13.jpeg');
+    				break;
+
+    				case 'film8':
+    					$(".title").text('戴安娜F+ + Kodak 电影卷 5207/250D');
+    		 			$(".text").text('特点：电影质感，相片色彩真实，成像质量高');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/29.jpeg');
+    				break;
+
+    				default:alert('出错了！！！');
+    			}
+    		break;
+
+    		case 'fc6':
+    			switch(fl){
+    				case 'film1':
+    					$(".title").text('长城HM-156 + Fujicolor100 负片胶卷');
+    		 			$(".text").text('特点：自动闪光灯系统可补足画面亮度，适合新手的入门级胶片机');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/10.jpeg');
+    				break;
+
+    				case 'film2':
+    					$(".title").text('长城HM-156 + Fujicolor200 负片胶卷');
+    		 			$(".text").text('特点：感光度适中，光圈适中（F9.5），快门速度为1/125s，比较适合于拍摄静止或缓慢运动的物体');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/16.jpeg');
+    				break;
+
+    				case 'film3':
+    					$(".title").text('长城HM-156 + Fujicolor400 负片胶卷');
+    		 			$(".text").text('特点：自动闪光灯系统可补足画面亮度，一般不需要ISO为400的高感光度胶片（会导致图像颗粒感太重）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/14.jpeg');
+    				break;
+
+    				case 'film4':
+    					$(".title").text('长城HM-156 + FUJI电影卷 ETERNA 8553');
+    		 			$(".text").text('特点：广角镜头可拍摄范围较大的景物，颜色自然，图像质量高');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/38.jpeg');
+    				break;
+
+    				case 'film5':
+    					$(".title").text('长城HM-156 + ILFORD polypan F胶卷');
+    		 			$(".text").text('特点：只能成黑白像，且成像效果一般，噪点较多');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/15.jpeg');
+    				break;
+
+    				case 'film6':
+    					$(".title").text('长城HM-156 + Kodak200 负片胶卷');
+    		 			$(".text").text('特点：广角镜头可拍摄范围较大的景物，感光度之中，可驾驭不同明暗的场景');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/4.jpeg');
+    				break;
+
+    				case 'film7':
+    					$(".title").text('长城HM-156 + Kodak Vison3 250D胶卷');
+    		 			$(".text").text('特点：自动过卷，适合胶片新手入门机；自动闪光灯系统（拍摄光源不足时自动开启）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/6.jpeg');
+    				break;
+
+    				case 'film8':
+    					$(".title").text('长城HM-156 + Kodak 电影卷 5207/250D');
+    		 			$(".text").text('特点：胶卷性能明显优于相机性能（不建议这样搭配）');
+    		 			$(".pic").attr('src', 'camera_pro/static/img/film examples/27.jpeg');
+    				break;
+
+    				default:alert('出错了！！！');
+    			}
+    		break;
+
+    		default:alert('出错了！！！');
+    	}
+    }
+
+
+    //显示半透明框
+    function _popup(){
+    	var dc=$("img[class='center_cam_body']").attr('id');
+    	var lens=$("img[class='center_lens']").attr('id');
+        var fc=$("img[class='center_film_body']").attr('id');
+        var film=$("img[class='center_film']").attr('id');
+
+    	if((dc&&lens)||(fc&&film)){
+    		$('#detail_box').show();
+    	}
+    	else
+    		alert("出错了！");  	
+    }
+
+    //关闭半透明框
+    function _close(){
+    	$('#detail_box').hide();
+    }
+
+    //清除原有的内容
+    function clear(){
+    	document.getElementById("info").innerHTML='';
+    }
+
+
+    function popup() { //打开导航
+        //加载弹出层
+        $('body').toggleClass('navigation-is-open');
+        $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+        });
+        //淡入动画
+        $('#dialog-box').css("opacity", 0);
+        $(".cd-primary-nav").css("opacity", 0);
+        $('#dialog-box').show();
+        $('#dialog-box').fadeTo(400,1,function () { // 400是毫秒单位，透明度从0-100%总用时400ms
+
+        });
+        $('.cd-primary-nav').fadeTo(400,1,function () {
+
+        });
+    }
+
+    function close_popup() { //关闭导航
+        //淡出动画
+        $('#dialog-box').fadeTo(400,0,function () {
+            //淡出动画完成后隐藏
+            $('#dialog-box').hide();
+            $('body').toggleClass('navigation-is-open');
+            $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+            });
+        });
+    }
+    //遮罩
+    $(document).ready(function(){
+        $("#Cannon_lens_1").mouseover(function(){
+            $("#canon_mask1").show();
+        });
+        $("#canon_mask1").mouseover(function(){
+            $("#canon_mask1").show();
+        });
+
+        $("#Cannon_lens_1").mouseout(function(){
+            $("#canon_mask1").hide();
+        });
+        $("#canon_mask1").mouseout(function(){
+            $("#canon_mask1").hide();
+        });
+    });
+    
+</script>
+</body>
+</html>
