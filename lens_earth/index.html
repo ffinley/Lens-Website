@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地球画廊</title>
+
+    <link rel="stylesheet" href="static/css/reset.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/third/bootstrap3/css/bootstrap.min.css">
+    <style>
+		html body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        .head {
+            width: 100%;
+            background-color: #FFDD53;
+            height: 60px;
+        }
+
+        .head_left {
+            float: left;
+            padding-left: 20px;
+            font-size: 28px;
+            margin-top: 8px;
+        }
+
+        .head_right {
+            float: right;
+            padding-right: 20px;
+            font-size: 28px;
+            margin-top: 10px;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .col-xs-1::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cd-nav::-webkit-scrollbar {
+            display: none;
+        }
+        .cd-navigation-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        #dialog-box {
+            -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background: #272727;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: 5000;
+            display: none;
+        }
+        #content {
+            background-color: #272727;
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            bottom: 0px;
+            left: 0px;
+        }
+        .EC{
+            width: 60vw;
+            /*//min-height: 600px;*/
+            background-color: #000;
+            height: 100%;
+			float:left;
+			padding:0;margin:0
+
+        }
+        .EC-Info{
+            width: 38%;
+            /*min-height: 600px;*/
+            background-color: #000;
+            height: 100%;
+			float:left;
+			padding:0;margin:0
+        }
+
+    </style>
+</head>
+<body>
+
+	<!-- 头部导航栏 --->
+<div id="nav" class="head">
+    <div class="head_left">
+    	<a href="../index-副本.html"><img src="../camera_pro/static/img/logo.png" style="width: 150px;height: 50px;cursor:pointer"></a>
+        <span style="font-family: Microsoft YaHei;font-size: 0.6em;font-weight:600;color:black;margin-left: 10px;">地球画廊</span>
+    </div>
+    <div class="head_right">
+        <div style="display:inline-block;vertical-align:middle">
+            <img src="../camera_pro/static/img/menu.png" style="width: 35px;height: 35px;cursor:pointer" onclick="popup()">
+            <span style="font-weight:bold; cursor:pointer; font-family: Microsoft YaHei;color:black; " onclick="popup()">MENU</span>
+        </div>
+    </div>
+</div>
+
+<div id="content" style="background-color: #000;" >
+<div class="EC" id="EC" ></div>
+<div class="EC-Info" id="EC-Info">
+	<div class="info" style="border:2px solid #fed533; width: 90%;height:90%;background: #000;margin-top: 30px;margin-left: 10px;display: none">
+        <img id="photo" src="" style="width: 100%;height: 65%;">
+        <div style="padding: 20px 20px 0 20px">
+            <span id="title" style="color: #FFDD53;font-weight: bold;font-size: 18px"></span>
+            <button id='more' style="background: #000;color: #fff;border: 2px #FFDD53 solid;border-radius: 3px;width: 60px;float: right;outline:none;" onclick="_more()">更多</button>
+        </div>
+        <div style="padding: 20px 20px 0 20px">
+            <span style="color: #fff;font-weight: bold;margin-left: 10px">摄影师: </span>
+            <span id="author" style="color: #fff;font-weight: bold"></span>
+            <button id='submit'style="background: #000;color: #fff;border: 2px #FFDD53 solid;border-radius: 3px;width: 80px;float: right;padding:2px;outline: none;" onclick="location='404页面/index.html'">我要投稿</button>
+        </div>
+        <div style="padding: 20px 20px 0 20px">
+            <span style="color: #fff;font-weight: bold;margin-left: 10px">设备: </span>
+            <span id="device" style="color: #fff;font-weight: bold;"></span>
+            <button class="unlike" style="background: #000;float: right;border:0px;margin-top: 10px;margin-right: 5px;outline: none;"><img id="like" src="../camera_pro/static/img/unlike.png" style="width: 35px;height:35px;"></button>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="dialog-box">
+    <div class="dialog-content">
+        <div id="dialog-message" class="cd-nav">
+            <a href="#" onclick="close_popup()"><img src="../camera_pro/static/img/close.png" style="width: 30px;height: 30px;margin-top: 20px;margin-right:20px;float: right;"></a>
+            <div class="cd-navigation-wrapper" style="padding-top: 0px">
+                <div class="cd-half-block">
+
+                    <nav>
+                        <ul class="cd-primary-nav" style="margin-top: 80px;">
+                            <li style="line-height: 350%"><a href="../index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei';">工作台</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../index-副本.html" onclick="close_popup()" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORKBENCH</a></li>
+
+                            <li style="line-height: 350%"><a href="../intro_cam/index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">数码相机</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../intro_cam/index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">DIGITAL CAMERA</a></li>
+
+                            <li style="line-height: 350%"><a href="../intro_film/index-副本.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">胶片机</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../intro_film/index-副本.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">GRAIN CAMERA</a></li>
+
+                            <li style="line-height: 350%"><a href="#" onclick="close_popup()" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">世界画廊</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="#" onclick="close_popup()" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">WORLD GALARY</a></li>
+
+                            <li style="line-height: 350%"><a href="../about us/index.html" style="color: white;font-size: 3.6rem;font-family: 'Microsoft YaHei'">联系我们</a>
+                                <span style="font-size: 4.4rem;color: white;"> / </span>
+                                <a href="../about us/index.html" style="color: #FFDD53;font-size: 3.6rem;font-family: 'Microsoft YaHei'">ABOUT AS</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="cd-half-block">
+                        <img src="../camera_pro/static/img/导航.jpg" style="width:70%;margin-top: 40px;float: right;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="static/js/jquery-3.2.1.min.js"></script>
+<script src="static/js/echarts.min.js"></script>
+<script src="static/js/echarts-gl.min.js"></script>
+<script src="static/js/world.js"></script>
+<script src="artworks.js"></script>
+<script>
+    //点赞功能(只有第一次有hover效果)
+    var ismouseover=true;
+    $('#like').hover(function() {
+        if(ismouseover){
+            $(this).attr({
+                src: '../camera_pro/static/img/like.png',
+                style:"width: 40px;height:40px"
+            });
+        }
+    }, function() {
+        if(ismouseover){
+            $(this).attr({
+                src: '../camera_pro/static/img/unlike.png',
+                style:"width: 35px;height:35px"
+            });
+        } 
+    });
+
+    $('#like').click(function(ev) {
+        ismouseover=false;
+        $(this).attr({
+            src: '../camera_pro/static/img/like.png',
+            style:"width: 35px;height:35px"
+        });
+    });
+
+    //显示效果
+    $('#more').hover(function() {
+        $(this).css({
+            background: 'rgba(254,213,51,0.9)',
+            color: '#000'
+        });
+    }, function() {
+        $(this).css({
+            background: '#000',
+            color: '#fff'
+        });
+    });
+
+    $('#submit').hover(function() {
+        $(this).css({
+            background: 'rgba(254,213,51,0.9)',
+            color: '#000'
+        });
+    }, function() {
+        $(this).css({
+            background: '#000',
+            color: '#fff'
+        });
+    });
+
+    //“更多”按钮功能
+    function _more(){
+    	var photo_src = $('#photo').attr('src');
+    	var num=photo_src.slice(11,13);  //检验是哪个地区
+
+    	window.open('图片展示页面/index.html?index='+num);//传递参数
+    }
+
+    var artwork_dict = new Object();
+//    var content = document.getElementById("content");
+//    var ec = document.getElementById("EC");
+//    var ec_info = document.getElementById("EC-Info");
+//
+//    ec_info.style.width = content.offsetWidth - ec.offsetWidth - 1;
+//    console.log(content.offsetWidth - ec.offsetWidth - 1);
+//    console.log(ec_info.style.width);
+
+    window.onload = () => {
+        let EC = echarts.init(document.querySelector('.EC'));
+
+// 使用 echarts 绘制世界地图的实例作为纹理
+let canvas = document.createElement('canvas');
+let mapChart = echarts.init(canvas, null, {
+    width: 4096,
+    height: 2048
+});
+let pOp = {
+    // 两种方法绘制地图都可以
+    geo: {
+        map: 'world',
+        label: {
+            fontSize: 60
+        },
+        itemStyle: {
+            //areaColor: '#0072FF',
+            //borderColor: '#00FDFF'
+        },
+        emphasis: {
+            areaColor: '#E4FF00'
+        },
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        boundingCoords: [
+            [-180, 90],
+            [180, -90]
+        ]
+    }
+    // series: [
+    //     {
+    //         type: 'map',
+    //         map: 'world',
+    //         top: 0, left: 0,
+    //         right: 0, bottom: 0,
+    //         boundingCoords: [[-180, 90], [180, -90]]
+    //     }
+    // ]
+}
+const randomData = () => {
+    let longitude = (Math.random() * 360 - 180).toFixed(6)
+    let latitude = (Math.random() * 180 - 90).toFixed(6)
+    let value = (Math.random() * 3000).toFixed(2)
+    return [longitude, latitude, value, value]
+}
+let data = [];
+// for (let i = 0; i < 5; i++) { // 此处是随机生成5个经纬度坐标及数量值，业务上根据实际需求生成
+//     data.push(randomData())
+// }
+
+    for(let i=0;i<artwoeks.length;i++){
+        let longitude = artwoeks[i].longitude.toFixed(6);
+        let latitude = artwoeks[i].latitude.toFixed(6);
+        let value = (Math.random() * 3000).toFixed(2);
+        artwork_dict[""+longitude+"_"+latitude] = artwoeks[i];
+        data.push([longitude, latitude, value, value]);
+    }
+
+mapChart.setOption(pOp);
+option = {
+    backgroundColor: '#000000',
+    tooltip: {
+        show: true,
+        formatter(d) {
+            return '经度：' + d.data[0] + '</br>纬度：' + d.data[1] + '</br>热度：' + d.data[3]
+        }
+    },
+    visualMap: [{
+        // show: false,
+        type: 'continuous',
+        seriesIndex: 0,
+        text: ['显示密度'],
+        textStyle: {
+            color: '#fff'
+        },
+        // dimension: 3,
+        calculable: true,
+        max: 3000,
+        inRange: {
+            color: ['#87aa66', '#eba438', '#d94d4c'],
+            symbolSize: [8, 30]
+        }
+    }],
+    globe: {
+        baseTexture: mapChart,
+        // shading: 'lambert',
+        light: { // 光照阴影
+            main: {
+                color: '#fff', // 光照颜色
+                intensity: 0, // 光照强度
+                // shadowQuality: 'high', //阴影亮度
+                shadow: false, // 是否显示阴影
+                alpha: 40,
+                beta: -30
+            },
+            ambient: {
+                intensity: 1
+            }
+        },
+        viewControl: {
+            alpha: 30,
+            beta: 160,
+            // targetCoord: [116.46, 39.92],
+            autoRotate: true,
+            autoRotateAfterStill: 30,
+            distance: 150
+        }
+    },
+    series: [
+	{
+            type: 'bar3D',
+            coordinateSystem: 'globe',//该系列使用的坐标系
+            data: data,//每一项的前两个值分别是经纬度 lng, lat，第三个值表示数值大小，
+            barSize: 2.0,//柱状图大小
+            bevelSize:1,//柱子的倒角尺寸
+            bevelSmoothness:10,//柱子的倒角光滑度
+            silent: false,//图形是否不响应和触发鼠标事件
+            shading:"realistic",//着色效果
+	}]
+}
+EC.setOption(option);
+$(".EC-Info").css("background", "#000000");
+$(".EC-Info").css("width", "38vw");
+
+EC.on('click', function (param) {//param即为点击目标的信息
+         if (typeof param.seriesIndex == 'undefined') {
+             return;
+         }
+         if (param.type == 'click') {
+                 EC.setOption({
+                     globe:{
+                         viewControl:{
+                             distance:150,
+                             targetCoord: [parseFloat(param.data[0]), parseFloat(param.data[1])]
+                             //前者为经度，后者为纬度
+                         }
+                     }
+                 });
+                 let artwork = artwork_dict[""+param.data[0]+"_"+param.data[1]];
+
+                 //TO DO 在此处根据所点击的目标经纬度判断该显示什么信息
+                //param.data[0],param.data[1] 是经纬度的值
+                 $(".info").css("display", "block");
+                 $('#like').attr('src', '../camera_pro/static/img/unlike.png');     //每点击一个地点，赞清空
+                 $("#photo").attr("src", artwork.src);
+                 $("#title").text("《"+artwork.title+"》 摄于 "+artwork.origin);
+                 $("#author").text(artwork.author);
+                 $("#device").text(artwork.equipment);
+
+                 // $("#intro").text(artwork.description); //被覆盖了
+             }
+     });
+
+    }
+</script>
+<script type="text/javascript">
+        function popup() { //打开导航
+            //加载弹出层
+            $('body').toggleClass('navigation-is-open');
+            $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+            });
+            //淡入动画
+            $('#dialog-box').css("opacity", 0);
+            $(".cd-primary-nav").css("opacity", 0);
+            $('#dialog-box').show();
+            $('#dialog-box').fadeTo(400,1,function () { // 400是毫秒单位，透明度从0-100%总用时400ms
+
+            });
+            $('.cd-primary-nav').fadeTo(400,1,function () {
+
+            });
+        }
+
+        function close_popup() { //关闭导航
+        //淡出动画
+        $('#dialog-box').fadeTo(400,0,function () {
+            //淡出动画完成后隐藏
+            $('#dialog-box').hide();
+            $('body').toggleClass('navigation-is-open');
+            $('.cd-navigation-wrapper').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+
+            });
+        });
+
+        }
+</script>
+</body>
+</html>
